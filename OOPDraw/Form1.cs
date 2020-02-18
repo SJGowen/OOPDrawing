@@ -25,42 +25,44 @@ namespace OOPDraw
             string selectedItem = (string)comboBox1.SelectedItem;
             if (selectedItem == "Draw Triangle")
             {
-                DrawTriangle(turtleX, turtleY, 50);
+                var triangle = new EquilateralTriangle(turtleX, turtleY, 100);
+                DrawTriangle(triangle);
             }
 
             if (selectedItem == "Draw Rectangle")
             {
-                DrawRectangle(turtleX, turtleY, 50, 100);
+                var rectangle = new Rectangle(turtleX, turtleY, 100, 50);
+                DrawRectangle(rectangle);
             }
         }
 
-        private void DrawTriangle(float xOrigin, float yOrigin, int sideLength)
+        private void DrawTriangle(EquilateralTriangle triangle)
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = 2;
             Turtle.Angle = 0;
-            Turtle.X = xOrigin;
-            Turtle.Y = yOrigin;
+            Turtle.X = triangle.XOrigin;
+            Turtle.Y = triangle.YOrigin;
             Turtle.Rotate(30);
             for (int i = 0; i < 3; i++)
             {
-                Turtle.Forward(sideLength);
+                Turtle.Forward(triangle.SideLength);
                 Turtle.Rotate(120);
             }
         }
  
-        private void DrawRectangle(float xOrigin, float yOrigin, float height, float width)
+        private void DrawRectangle(Rectangle rectangle)
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = 2;
             Turtle.Angle = 0;
-            Turtle.X = xOrigin;
-            Turtle.Y = yOrigin;
+            Turtle.X = rectangle.XOrigin;
+            Turtle.Y = rectangle.YOrigin;
             for (int i = 0; i < 2; i++)
             {
-                Turtle.Forward(height);
+                Turtle.Forward(rectangle.Height);
                 Turtle.Rotate(90);
-                Turtle.Forward(width);
+                Turtle.Forward(rectangle.Width);
                 Turtle.Rotate(90);
             }
         }
