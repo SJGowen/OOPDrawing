@@ -1,5 +1,4 @@
-﻿using Nakov.TurtleGraphics;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace OOPDraw
 {
@@ -18,44 +17,13 @@ namespace OOPDraw
             if (selectedItem == "Draw Triangle")
             {
                 var triangle = new EquilateralTriangle(turtleX, turtleY, 100);
-                DrawTriangle(triangle);
+                triangle.Draw();
             }
 
             if (selectedItem == "Draw Rectangle")
             {
                 var rectangle = new Rectangle(turtleX, turtleY, 100, 50);
-                DrawRectangle(rectangle);
-            }
-        }
-
-        private static void DrawTriangle(EquilateralTriangle triangle)
-        {
-            Turtle.ShowTurtle = false;
-            Turtle.PenSize = 2;
-            Turtle.Angle = 0;
-            Turtle.X = triangle.XOrigin;
-            Turtle.Y = triangle.YOrigin;
-            Turtle.Rotate(30);
-            for (int i = 0; i < 3; i++)
-            {
-                Turtle.Forward(triangle.SideLength);
-                Turtle.Rotate(120);
-            }
-        }
- 
-        private static void DrawRectangle(Rectangle rectangle)
-        {
-            Turtle.ShowTurtle = false;
-            Turtle.PenSize = 2;
-            Turtle.Angle = 0;
-            Turtle.X = rectangle.XOrigin;
-            Turtle.Y = rectangle.YOrigin;
-            for (int i = 0; i < 2; i++)
-            {
-                Turtle.Forward(rectangle.Height);
-                Turtle.Rotate(90);
-                Turtle.Forward(rectangle.Width);
-                Turtle.Rotate(90);
+                rectangle.Draw();
             }
         }
    }
