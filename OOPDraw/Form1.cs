@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nakov.TurtleGraphics;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,15 @@ namespace OOPDraw
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             string selectedItem = (string) comboBox1.SelectedItem;
+            if (selectedItem == "Draw Triangle")
+            {
+                Turtle.Rotate(30);
+                for (int i = 0; i < 3; i++)
+                {
+                    Turtle.Forward(50);
+                    Turtle.Rotate(120);
+                }
+            }
         }
     }
 }
