@@ -6,20 +6,14 @@ namespace OOPDraw
     {
         private float SideLength { get; set; }
 
-        public EquilateralTriangle(float xOrigin, float yOrigin, float sideLength)
+        public EquilateralTriangle(float xOrigin, float yOrigin, float sideLength) : base(xOrigin, yOrigin)
         {
-            XOrigin = xOrigin;
-            YOrigin = yOrigin;
             SideLength = sideLength;
         }
 
         public override void Draw()
         {
-            Turtle.ShowTurtle = false;
-            Turtle.PenSize = 2;
-            Turtle.Angle = 0;
-            Turtle.X = XOrigin;
-            Turtle.Y = YOrigin;
+            ResetTurtle();
             Turtle.Rotate(30);
             for (int i = 0; i < 3; i++)
             {
