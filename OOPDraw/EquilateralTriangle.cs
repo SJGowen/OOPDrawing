@@ -21,5 +21,10 @@ namespace OOPDraw
                 Turtle.Rotate(120);
             }
         }
+
+        public override void Resize(float x, float y)
+        {
+            SideLength = x;
+        }
     }
 }

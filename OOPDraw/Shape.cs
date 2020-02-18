@@ -40,5 +40,7 @@ namespace OOPDraw
             XOrigin = x;
             YOrigin = y;
         }
+
+        public abstract void Resize(float x, float y);
     }
 }

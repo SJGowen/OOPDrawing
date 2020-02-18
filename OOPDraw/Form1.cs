@@ -30,6 +30,10 @@ namespace OOPDraw
             {
                 ActiveShape().MoveTo(turtleX, turtleY);
             }
+            else if (selectedItem == "Resize Shape")
+            {
+                ActiveShape().Resize(turtleX, turtleY);
+            }
 
             DrawAll();
         }
