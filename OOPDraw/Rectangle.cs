@@ -2,7 +2,7 @@
 
 namespace OOPDraw
 {
-    public class Rectangle
+    public class Rectangle : Shape
     {
         private float XOrigin { get; set; }
         private float YOrigin { get; set; }

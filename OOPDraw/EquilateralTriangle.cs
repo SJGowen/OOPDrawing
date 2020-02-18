@@ -2,7 +2,7 @@
 
 namespace OOPDraw
 {
-    public class EquilateralTriangle
+    public class EquilateralTriangle : Shape
     {
         private float XOrigin { get; set; }
         private float YOrigin { get; set; }
