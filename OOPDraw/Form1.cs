@@ -16,5 +16,10 @@ namespace OOPDraw
         {
             InitializeComponent();
         }
+
+        private void Form1_MouseClick(object sender, MouseEventArgs e)
+        {
+            string selectedItem = (string) comboBox1.SelectedItem;
+        }
     }
 }
