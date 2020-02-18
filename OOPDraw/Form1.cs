@@ -1,4 +1,5 @@
 ﻿using Nakov.TurtleGraphics;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -32,7 +33,7 @@ namespace OOPDraw
             }
             else if (selectedItem == "Resize Shape")
             {
-                ActiveShape().Resize(turtleX, turtleY);
+                ActiveShape().ResizeAbsolute(turtleX, turtleY);
             }
 
             DrawAll();

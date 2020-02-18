@@ -1,4 +1,5 @@
 ﻿using Nakov.TurtleGraphics;
+using System;
 
 namespace OOPDraw
 {
@@ -42,5 +43,10 @@ namespace OOPDraw
         }
 
         public abstract void Resize(float x, float y);
+
+        public void ResizeAbsolute(float x, float y)
+        {
+            Resize(Math.Abs(x - XOrigin), Math.Abs(y - YOrigin));
+        }
     }
 }
