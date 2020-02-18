@@ -36,6 +36,7 @@ namespace OOPDraw
 
         private void AddShape(Shape shape)
         {
+            if (shapes.Count > 0) ActiveShape().Unselect();
             shapes.Add(shape);
             activeShapeNumber = shapes.Count - 1;
             ActiveShape().Select();
