@@ -20,22 +20,25 @@ namespace OOPDraw
             string selectedItem = (string)comboBox1.SelectedItem;
             if (selectedItem == "Draw Triangle")
             {
-                var triangle = new EquilateralTriangle(turtleX, turtleY, 100);
-                shapes.Add(triangle);
-                activeShapeNumber = shapes.Count - 1;
+                AddShape(new EquilateralTriangle(turtleX, turtleY, 100));
             }
             else if (selectedItem == "Draw Rectangle")
             {
-                var rectangle = new Rectangle(turtleX, turtleY, 100, 50);
-                shapes.Add(rectangle);
+                AddShape(new Rectangle(turtleX, turtleY, 100, 50));
             }
             else if (selectedItem == "Move Shape")
             {
                 ActiveShape().MoveTo(turtleX, turtleY);
-                activeShapeNumber = shapes.Count - 1;
             }
 
             DrawAll();
+        }
+
+        private void AddShape(Shape shape)
+        {
+            shapes.Add(shape);
+            activeShapeNumber = shapes.Count - 1;
+            ActiveShape().Select();
         }
 
         public void DrawAll()
@@ -56,15 +59,20 @@ namespace OOPDraw
 
         private void NextShape_Click(object sender, System.EventArgs e)
         {
+            ActiveShape().Unselect();
             activeShapeNumber++;
             if (activeShapeNumber >= shapes.Count) activeShapeNumber = 0;
+            ActiveShape().Select();
+            DrawAll();
         }
 
         private void PreviousShape_Click(object sender, System.EventArgs e)
         {
+            ActiveShape().Unselect();
             activeShapeNumber--;
             if (activeShapeNumber < 0) activeShapeNumber = shapes.Count - 1;
-
+            ActiveShape().Select();
+            DrawAll();
         }
     }
 }

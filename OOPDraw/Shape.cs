@@ -6,6 +6,7 @@ namespace OOPDraw
     {
         protected float XOrigin { get; set; }
         protected float YOrigin { get; set; }
+        public float LineWidth { get; set; }
 
         public Shape(float xOrigin, float yOrigin)
         {
@@ -13,10 +14,20 @@ namespace OOPDraw
             YOrigin = yOrigin;
         }
 
+        public void Select()
+        {
+            LineWidth = 4;
+        }
+
+        public void Unselect()
+        {
+            LineWidth = 2;
+        }
+
         protected void ResetTurtle()
         {
             Turtle.ShowTurtle = false;
-            Turtle.PenSize = 2;
+            Turtle.PenSize = LineWidth;
             Turtle.Angle = 0;
             Turtle.X = XOrigin;
             Turtle.Y = YOrigin;
