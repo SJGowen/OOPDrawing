@@ -1,9 +1,16 @@
 ﻿namespace OOPDraw
 {
-    public interface Shape
+    public abstract class Shape
     {
-        void Draw();
+        protected float XOrigin { get; set; }
+        protected float YOrigin { get; set; }
 
-        void MoveTo(float x, float y);
+        public abstract void Draw();
+
+        public void MoveTo(float x, float y)
+        {
+            XOrigin = x;
+            YOrigin = y;
+        }
     }
 }

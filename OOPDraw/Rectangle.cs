@@ -4,8 +4,6 @@ namespace OOPDraw
 {
     public class Rectangle : Shape
     {
-        private float XOrigin { get; set; }
-        private float YOrigin { get; set; }
         private float Width { get; set; }
         private float Height { get; set; }
 
@@ -17,7 +15,7 @@ namespace OOPDraw
             Height = height;
         }
  
-        public void Draw()
+        public override void Draw()
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = 2;
@@ -31,12 +29,6 @@ namespace OOPDraw
                 Turtle.Forward(Width);
                 Turtle.Rotate(90);
             }
-        }
-
-        public void MoveTo(float x, float y)
-        {
-            XOrigin = x;
-            YOrigin = y;
         }
     }
 }
