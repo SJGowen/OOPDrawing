@@ -27,6 +27,11 @@ namespace OOPDraw
             {
                 DrawTriangle(turtleX, turtleY, 50);
             }
+
+            if (selectedItem == "Draw Rectangle")
+            {
+                DrawRectangle(turtleX, turtleY, 50, 100);
+            }
         }
 
         private void DrawTriangle(float xOrigin, float yOrigin, int sideLength)
@@ -43,5 +48,21 @@ namespace OOPDraw
                 Turtle.Rotate(120);
             }
         }
-    }
+ 
+        private void DrawRectangle(float xOrigin, float yOrigin, float height, float width)
+        {
+            Turtle.ShowTurtle = false;
+            Turtle.PenSize = 2;
+            Turtle.Angle = 0;
+            Turtle.X = xOrigin;
+            Turtle.Y = yOrigin;
+            for (int i = 0; i < 2; i++)
+            {
+                Turtle.Forward(height);
+                Turtle.Rotate(90);
+                Turtle.Forward(width);
+                Turtle.Rotate(90);
+            }
+        }
+   }
 }
