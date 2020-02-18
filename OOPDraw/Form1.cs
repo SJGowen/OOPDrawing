@@ -1,12 +1,4 @@
 ﻿using Nakov.TurtleGraphics;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOPDraw
@@ -36,7 +28,7 @@ namespace OOPDraw
             }
         }
 
-        private void DrawTriangle(EquilateralTriangle triangle)
+        private static void DrawTriangle(EquilateralTriangle triangle)
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = 2;
@@ -51,7 +43,7 @@ namespace OOPDraw
             }
         }
  
-        private void DrawRectangle(Rectangle rectangle)
+        private static void DrawRectangle(Rectangle rectangle)
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = 2;
