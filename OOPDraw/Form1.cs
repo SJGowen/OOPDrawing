@@ -13,8 +13,6 @@ namespace OOPDraw
 
         private List<Shape> shapes = new List<Shape>();
 
-        private Shape mostRecent;
-
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             float turtleX = e.X - Width / 2 + 8;
@@ -24,17 +22,17 @@ namespace OOPDraw
             {
                 var triangle = new EquilateralTriangle(turtleX, turtleY, 100);
                 shapes.Add(triangle);
-                mostRecent = triangle;
+                activeShapeNumber = shapes.Count - 1;
             }
             else if (selectedItem == "Draw Rectangle")
             {
                 var rectangle = new Rectangle(turtleX, turtleY, 100, 50);
                 shapes.Add(rectangle);
-                mostRecent = rectangle;
             }
             else if (selectedItem == "Move Shape")
             {
-                mostRecent.MoveTo(turtleX, turtleY);
+                ActiveShape().MoveTo(turtleX, turtleY);
+                activeShapeNumber = shapes.Count - 1;
             }
 
             DrawAll();
@@ -48,5 +46,25 @@ namespace OOPDraw
                 shape.Draw();
             }
         }
-   }
+
+        private int activeShapeNumber = 0;
+
+        private Shape ActiveShape()
+        {
+            return shapes[activeShapeNumber];
+        }
+
+        private void NextShape_Click(object sender, System.EventArgs e)
+        {
+            activeShapeNumber++;
+            if (activeShapeNumber >= shapes.Count) activeShapeNumber = 0;
+        }
+
+        private void PreviousShape_Click(object sender, System.EventArgs e)
+        {
+            activeShapeNumber--;
+            if (activeShapeNumber < 0) activeShapeNumber = shapes.Count - 1;
+
+        }
+    }
 }
