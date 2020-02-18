@@ -32,5 +32,11 @@ namespace OOPDraw
                 Turtle.Rotate(90);
             }
         }
+
+        public void MoveTo(float x, float y)
+        {
+            XOrigin = x;
+            YOrigin = y;
+        }
     }
 }

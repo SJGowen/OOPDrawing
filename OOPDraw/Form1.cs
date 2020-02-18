@@ -13,6 +13,8 @@ namespace OOPDraw
 
         private List<Shape> shapes = new List<Shape>();
 
+        private Shape mostRecent;
+
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
             float turtleX = e.X - Width / 2 + 8;
@@ -22,12 +24,17 @@ namespace OOPDraw
             {
                 var triangle = new EquilateralTriangle(turtleX, turtleY, 100);
                 shapes.Add(triangle);
+                mostRecent = triangle;
             }
-
-            if (selectedItem == "Draw Rectangle")
+            else if (selectedItem == "Draw Rectangle")
             {
                 var rectangle = new Rectangle(turtleX, turtleY, 100, 50);
                 shapes.Add(rectangle);
+                mostRecent = rectangle;
+            }
+            else if (selectedItem == "Move Shape")
+            {
+                mostRecent.MoveTo(turtleX, turtleY);
             }
 
             DrawAll();
@@ -35,6 +42,7 @@ namespace OOPDraw
 
         public void DrawAll()
         {
+            Turtle.Dispose();
             foreach (var shape in shapes)
             {
                 shape.Draw();
