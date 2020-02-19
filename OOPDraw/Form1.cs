@@ -27,6 +27,10 @@ namespace OOPDraw
             {
                 AddShape(new Rectangle(turtleX, turtleY, 100, 50));
             }
+            else if (selectedItem == "Draw House")
+            {
+                AddShape(new House(turtleX, turtleY, 100, 80));
+            }
             else if (selectedItem == "Move Shape")
             {
                 ActiveShape().MoveTo(turtleX, turtleY);

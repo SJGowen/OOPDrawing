@@ -39,6 +39,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Draw Triangle",
             "Draw Rectangle",
+            "Draw House",
             "Move Shape",
             "Resize Shape"});
             this.comboBox1.Location = new System.Drawing.Point(13, 13);

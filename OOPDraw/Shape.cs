@@ -5,9 +5,9 @@ namespace OOPDraw
 {
     public abstract class Shape
     {
-        protected float XOrigin { get; set; }
-        protected float YOrigin { get; set; }
-        public float LineWidth { get; set; }
+        private float XOrigin { get; set; }
+        private float YOrigin { get; set; }
+        private float LineWidth { get; set; }
 
         public Shape(float xOrigin, float yOrigin)
         {
@@ -15,12 +15,12 @@ namespace OOPDraw
             YOrigin = yOrigin;
         }
 
-        public void Select()
+        public virtual void Select()
         {
             LineWidth = 4;
         }
 
-        public void Unselect()
+        public virtual void Unselect()
         {
             LineWidth = 2;
         }
@@ -36,10 +36,16 @@ namespace OOPDraw
 
         public abstract void Draw();
 
-        public void MoveTo(float x, float y)
+        public virtual void MoveTo(float x, float y)
         {
             XOrigin = x;
             YOrigin = y;
+        }
+
+        public virtual void MoveBy(float x, float y)
+        {
+            XOrigin += x;
+            YOrigin += y;
         }
 
         public abstract void Resize(float x, float y);
