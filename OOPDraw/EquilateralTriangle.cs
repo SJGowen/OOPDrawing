@@ -22,9 +22,9 @@ namespace OOPDraw
             }
         }
 
-        public override void Resize(float x, float y)
+        public override void Resize(float xUnits, float yUnits)
         {
-            SideLength = x;
+            SideLength = xUnits;
         }
     }
 }

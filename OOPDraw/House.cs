@@ -7,12 +7,12 @@
         private Rectangle Walls { get; set; }
         private EquilateralTriangle Roof { get; set; }
 
-        public House(float originX, float originY, float width, float wallHeight) : base(originX, originY)
+        public House(float xOrigin, float yOrigin, float width, float wallHeight) : base(xOrigin, yOrigin)
         {
             Width = width;
             WallHeight = wallHeight;
-            Walls = new Rectangle(originX, originY, width, wallHeight);
-            Roof = new EquilateralTriangle(originX, originY + wallHeight, width);
+            Walls = new Rectangle(xOrigin, yOrigin, width, wallHeight);
+            Roof = new EquilateralTriangle(xOrigin, yOrigin + wallHeight, width);
         }
 
         public override void Draw()
@@ -21,18 +21,18 @@
             Roof.Draw();
         }
 
-        public override void MoveTo(float x, float y)
+        public override void MoveTo(float xOrigin, float yOrigin)
         {
-            base.MoveTo(x, y);
-            Walls.MoveTo(x, y);
-            Roof.MoveTo(x, y + WallHeight);
+            base.MoveTo(xOrigin, yOrigin);
+            Walls.MoveTo(xOrigin, yOrigin);
+            Roof.MoveTo(xOrigin, yOrigin + WallHeight);
         }
 
-        public override void Resize(float x, float y)
+        public override void Resize(float xUnits, float yUnits)
         {
-            Width = x;
-            var yDiff = y - WallHeight;
-            WallHeight = y;
+            Width = xUnits;
+            var yDiff = yUnits - WallHeight;
+            WallHeight = yUnits;
             Walls.Resize(Width, WallHeight);
             Roof.Resize(Width, 0);
             Roof.MoveBy(0, yDiff);

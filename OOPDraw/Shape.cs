@@ -36,23 +36,23 @@ namespace OOPDraw
 
         public abstract void Draw();
 
-        public virtual void MoveTo(float x, float y)
+        public virtual void MoveTo(float xOrigin, float yOrigin)
         {
-            XOrigin = x;
-            YOrigin = y;
+            XOrigin = xOrigin;
+            YOrigin = yOrigin;
         }
 
-        public virtual void MoveBy(float x, float y)
+        public virtual void MoveBy(float xUnits, float yUnits)
         {
-            XOrigin += x;
-            YOrigin += y;
+            XOrigin += xUnits;
+            YOrigin += yUnits;
         }
 
-        public abstract void Resize(float x, float y);
+        public abstract void Resize(float xUnits, float yUnits);
 
-        public void ResizeAbsolute(float x, float y)
+        public void ResizeAbsolute(float xUnits, float yUnits)
         {
-            Resize(Math.Abs(x - XOrigin), Math.Abs(y - YOrigin));
+            Resize(Math.Abs(xUnits - XOrigin), Math.Abs(yUnits - YOrigin));
         }
     }
 }
