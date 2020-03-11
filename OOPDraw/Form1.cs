@@ -19,7 +19,15 @@ namespace OOPDraw
             float turtleX = e.X - Width / 2 + 8;
             float turtleY = Height / 2 - e.Y - 19;
             string selectedItem = (string)comboBox1.SelectedItem;
-            if (selectedItem == "Draw Triangle")
+            if (selectedItem == "Draw Line")
+            {
+                AddShape(new Line(turtleX, turtleY, 100, (float)angle.Value));
+            }
+            else if (selectedItem == "Draw Circle")
+            {
+                AddShape(new Circle(turtleX, turtleY, 100));
+            }
+            else if (selectedItem == "Draw Triangle")
             {
                 AddShape(new EquilateralTriangle(turtleX, turtleY, 100));
             }
@@ -30,6 +38,10 @@ namespace OOPDraw
             else if (selectedItem == "Draw House")
             {
                 AddShape(new House(turtleX, turtleY, 100, 80));
+            }
+            else if (selectedItem == "Draw Arrow")
+            {
+                AddShape(new Arrow(turtleX, turtleY, 100, (float)angle.Value));
             }
             else if (selectedItem == "Move Shape")
             {
@@ -83,6 +95,15 @@ namespace OOPDraw
             if (activeShapeNumber < 0) activeShapeNumber = shapes.Count - 1;
             ActiveShape().Select();
             DrawAll();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedItem = (string)comboBox1.SelectedItem;
+            var visible = selectedItem == "Draw Line" || selectedItem == "Draw Arrow";
+            angle.Visible = visible;
+            angleLabel.Visible = visible;
+            degreesLabel.Visible = visible;
         }
     }
 }
