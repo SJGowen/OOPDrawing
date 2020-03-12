@@ -1,5 +1,6 @@
 ﻿using Nakov.TurtleGraphics;
 using System;
+using System.Drawing;
 
 namespace OOPDraw
 {
@@ -8,21 +9,28 @@ namespace OOPDraw
         private float XOrigin { get; set; }
         private float YOrigin { get; set; }
         private float LineWidth { get; set; }
+        public Color Colour { get; set; }
+        
+        private float OriginalLineWidth;
 
-        public Shape(float xOrigin, float yOrigin)
+
+        public Shape(float xOrigin, float yOrigin, Color colour, float lineWidth)
         {
             XOrigin = xOrigin;
             YOrigin = yOrigin;
+            Colour = colour;
+            LineWidth = lineWidth;
         }
 
         public virtual void Select()
         {
+            OriginalLineWidth = LineWidth;
             LineWidth = 4;
         }
 
         public virtual void Unselect()
         {
-            LineWidth = 2;
+            LineWidth = OriginalLineWidth;
         }
 
         protected void ResetTurtle()

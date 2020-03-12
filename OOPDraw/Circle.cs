@@ -1,5 +1,6 @@
 ﻿using Nakov.TurtleGraphics;
-using System;
+using System.Drawing;
+
 
 namespace OOPDraw
 {
@@ -7,7 +8,7 @@ namespace OOPDraw
     {
         private float Increment { get; set; }
 
-        public Circle(float xOrigin, float yOrigin, float increment) : base(xOrigin, yOrigin)
+        public Circle(float xOrigin, float yOrigin, Color colour, float lineWidth, float increment) : base(xOrigin, yOrigin, colour, lineWidth)
         {
             Increment = increment / 10;
         }
@@ -15,6 +16,7 @@ namespace OOPDraw
         public override void Draw()
         {
             ResetTurtle();
+            Turtle.PenColor = Colour;
             for (int i = 0; i < 36; i++)
             {
                 Turtle.Forward(Increment);

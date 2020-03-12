@@ -1,6 +1,7 @@
 ﻿using Nakov.TurtleGraphics;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOPDraw
@@ -10,38 +11,49 @@ namespace OOPDraw
         public Form1()
         {
             InitializeComponent();
+            colourBtn.BackColor = Turtle.DefaultColor;
         }
 
-        private List<Shape> shapes = new List<Shape>();
+        private List<Shape> Shapes = new List<Shape>();
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            float turtleX = e.X - Width / 2 + 8;
-            float turtleY = Height / 2 - e.Y - 19;
-            string selectedItem = (string)comboBox1.SelectedItem;
+            var turtleX = e.X - Width / 2 + 8;
+            var turtleY = Height / 2 - e.Y - 19;
+            var selectedItem = (string)actionCombo.SelectedItem;
+            var colour = colourBtn.BackColor;
+            var lineWidth = (float)spinLineWidth.Value;
             if (selectedItem == "Draw Line")
             {
-                AddShape(new Line(turtleX, turtleY, 100, (float)angle.Value));
+                AddShape(new Line(turtleX, turtleY, colour, lineWidth, 100, (float)angle.Value));
             }
             else if (selectedItem == "Draw Circle")
             {
-                AddShape(new Circle(turtleX, turtleY, 100));
+                AddShape(new Circle(turtleX, turtleY, colour, lineWidth, 100));
             }
-            else if (selectedItem == "Draw Triangle")
+            else if (selectedItem == "Draw Equilateral Triangle")
             {
-                AddShape(new EquilateralTriangle(turtleX, turtleY, 100));
+                AddShape(new EquilateralTriangle(turtleX, turtleY, colour, lineWidth, 100));
+            }
+            else if (selectedItem == "Draw Isosceles Triangle")
+            {
+                AddShape(new IsoscelesRightAngledTriangle(turtleX, turtleY, colour, lineWidth, 100));
+            }
+            else if (selectedItem == "Draw Square")
+            {
+                AddShape(new Rectangle(turtleX, turtleY, colour, lineWidth, 100, 100));
             }
             else if (selectedItem == "Draw Rectangle")
             {
-                AddShape(new Rectangle(turtleX, turtleY, 100, 50));
+                AddShape(new Rectangle(turtleX, turtleY, colour, lineWidth, 100, 50));
             }
             else if (selectedItem == "Draw House")
             {
-                AddShape(new House(turtleX, turtleY, 100, 80));
+                AddShape(new House(turtleX, turtleY, colour, lineWidth, 100, 80));
             }
             else if (selectedItem == "Draw Arrow")
             {
-                AddShape(new Arrow(turtleX, turtleY, 100, (float)angle.Value));
+                AddShape(new Arrow(turtleX, turtleY, colour, lineWidth, 100, (float)angle.Value));
             }
             else if (selectedItem == "Move Shape")
             {
@@ -57,16 +69,19 @@ namespace OOPDraw
 
         private void AddShape(Shape shape)
         {
-            if (shapes.Count > 0) ActiveShape().Unselect();
-            shapes.Add(shape);
-            activeShapeNumber = shapes.Count - 1;
+            if (Shapes.Count > 0) 
+            {
+                ActiveShape().Unselect();
+            }
+            Shapes.Add(shape);
+            activeShapeNumber = Shapes.Count - 1;
             ActiveShape().Select();
         }
 
         public void DrawAll()
         {
             Turtle.Dispose();
-            foreach (var shape in shapes)
+            foreach (var shape in Shapes)
             {
                 shape.Draw();
             }
@@ -76,14 +91,14 @@ namespace OOPDraw
 
         private Shape ActiveShape()
         {
-            return shapes[activeShapeNumber];
+            return Shapes[activeShapeNumber];
         }
 
         private void NextShape_Click(object sender, System.EventArgs e)
         {
             ActiveShape().Unselect();
             activeShapeNumber++;
-            if (activeShapeNumber >= shapes.Count) activeShapeNumber = 0;
+            if (activeShapeNumber >= Shapes.Count) activeShapeNumber = 0;
             ActiveShape().Select();
             DrawAll();
         }
@@ -92,18 +107,26 @@ namespace OOPDraw
         {
             ActiveShape().Unselect();
             activeShapeNumber--;
-            if (activeShapeNumber < 0) activeShapeNumber = shapes.Count - 1;
+            if (activeShapeNumber < 0) activeShapeNumber = Shapes.Count - 1;
             ActiveShape().Select();
             DrawAll();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = (string)comboBox1.SelectedItem;
+            var selectedItem = (string)actionCombo.SelectedItem;
             var visible = selectedItem == "Draw Line" || selectedItem == "Draw Arrow";
             angle.Visible = visible;
             angleLabel.Visible = visible;
             degreesLabel.Visible = visible;
+        }
+
+        private void colourBtn_Click(object sender, EventArgs e)
+        {
+            if (colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                colourBtn.BackColor = colorDialog1.Color;
+            }
         }
     }
 }

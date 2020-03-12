@@ -1,4 +1,5 @@
 ﻿using Nakov.TurtleGraphics;
+using System.Drawing;
 
 namespace OOPDraw
 {
@@ -7,7 +8,7 @@ namespace OOPDraw
         private float Width { get; set; }
         private float Height { get; set; }
 
-        public Rectangle(float xOrigin, float yOrigin, float width, float height) : base(xOrigin, yOrigin)
+        public Rectangle(float xOrigin, float yOrigin, Color colour, float lineWidth, float width, float height) : base(xOrigin, yOrigin, colour, lineWidth)
         {
             Width = width;
             Height = height;
@@ -16,6 +17,7 @@ namespace OOPDraw
         public override void Draw()
         {
             ResetTurtle();
+            Turtle.PenColor = Colour;
             for (int i = 0; i < 2; i++)
             {
                 Turtle.Forward(Height);

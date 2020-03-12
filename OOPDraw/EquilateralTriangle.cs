@@ -1,4 +1,5 @@
 ﻿using Nakov.TurtleGraphics;
+using System.Drawing;
 
 namespace OOPDraw
 {
@@ -6,7 +7,7 @@ namespace OOPDraw
     {
         private float SideLength { get; set; }
 
-        public EquilateralTriangle(float xOrigin, float yOrigin, float sideLength) : base(xOrigin, yOrigin)
+        public EquilateralTriangle(float xOrigin, float yOrigin, Color colour, float lineWidth, float sideLength) : base(xOrigin, yOrigin, colour, lineWidth)
         {
             SideLength = sideLength;
         }
@@ -14,6 +15,7 @@ namespace OOPDraw
         public override void Draw()
         {
             ResetTurtle();
+            Turtle.PenColor = Colour;
             Turtle.Rotate(30);
             for (int i = 0; i < 3; i++)
             {

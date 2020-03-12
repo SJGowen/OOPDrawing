@@ -28,34 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.actionCombo = new System.Windows.Forms.ComboBox();
             this.NextShape = new System.Windows.Forms.Button();
             this.PreviousShape = new System.Windows.Forms.Button();
             this.angle = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
             this.degreesLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.actionLabel = new System.Windows.Forms.Label();
+            this.selectionLabel = new System.Windows.Forms.Label();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.colourBtn = new System.Windows.Forms.Button();
+            this.colourLabel = new System.Windows.Forms.Label();
+            this.spinLineWidth = new System.Windows.Forms.NumericUpDown();
+            this.lineWidthLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.angle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // actionCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.actionCombo.FormattingEnabled = true;
+            this.actionCombo.Items.AddRange(new object[] {
             "Draw Line",
             "Draw Circle",
-            "Draw Triangle",
+            "Draw Equilateral Triangle",
+            "Draw Isosceles Triangle",
+            "Draw Square",
             "Draw Rectangle",
             "Draw House",
             "Draw Arrow",
             "Move Shape",
             "Resize Shape"});
-            this.comboBox1.Location = new System.Drawing.Point(108, 6);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.actionCombo.Location = new System.Drawing.Point(108, 6);
+            this.actionCombo.Name = "actionCombo";
+            this.actionCombo.Size = new System.Drawing.Size(156, 21);
+            this.actionCombo.TabIndex = 0;
+            this.actionCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // NextShape
             // 
@@ -79,6 +87,11 @@
             // 
             // angle
             // 
+            this.angle.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             this.angle.Location = new System.Drawing.Point(502, 7);
             this.angle.Maximum = new decimal(new int[] {
             359,
@@ -110,41 +123,97 @@
             this.degreesLabel.Text = "degrees";
             this.degreesLabel.Visible = false;
             // 
-            // label3
+            // actionLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Action to perform:";
+            this.actionLabel.AutoSize = true;
+            this.actionLabel.Location = new System.Drawing.Point(12, 9);
+            this.actionLabel.Name = "actionLabel";
+            this.actionLabel.Size = new System.Drawing.Size(90, 13);
+            this.actionLabel.TabIndex = 6;
+            this.actionLabel.Text = "Action to perform:";
             // 
-            // label4
+            // selectionLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Object to Select:";
+            this.selectionLabel.AutoSize = true;
+            this.selectionLabel.Location = new System.Drawing.Point(16, 38);
+            this.selectionLabel.Name = "selectionLabel";
+            this.selectionLabel.Size = new System.Drawing.Size(86, 13);
+            this.selectionLabel.TabIndex = 7;
+            this.selectionLabel.Text = "Object to Select:";
+            // 
+            // colourBtn
+            // 
+            this.colourBtn.ForeColor = System.Drawing.SystemColors.Window;
+            this.colourBtn.Location = new System.Drawing.Point(108, 62);
+            this.colourBtn.Name = "colourBtn";
+            this.colourBtn.Size = new System.Drawing.Size(75, 23);
+            this.colourBtn.TabIndex = 8;
+            this.colourBtn.Text = "Colour";
+            this.colourBtn.UseVisualStyleBackColor = true;
+            this.colourBtn.Click += new System.EventHandler(this.colourBtn_Click);
+            // 
+            // colourLabel
+            // 
+            this.colourLabel.AutoSize = true;
+            this.colourLabel.Location = new System.Drawing.Point(23, 67);
+            this.colourLabel.Name = "colourLabel";
+            this.colourLabel.Size = new System.Drawing.Size(79, 13);
+            this.colourLabel.TabIndex = 9;
+            this.colourLabel.Text = "Objects Colour:";
+            // 
+            // spinLineWidth
+            // 
+            this.spinLineWidth.Location = new System.Drawing.Point(108, 91);
+            this.spinLineWidth.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.spinLineWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.spinLineWidth.Name = "spinLineWidth";
+            this.spinLineWidth.Size = new System.Drawing.Size(31, 20);
+            this.spinLineWidth.TabIndex = 10;
+            this.spinLineWidth.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // lineWidthLabel
+            // 
+            this.lineWidthLabel.AutoSize = true;
+            this.lineWidthLabel.Location = new System.Drawing.Point(41, 93);
+            this.lineWidthLabel.Name = "lineWidthLabel";
+            this.lineWidthLabel.Size = new System.Drawing.Size(61, 13);
+            this.lineWidthLabel.TabIndex = 11;
+            this.lineWidthLabel.Text = "Line Width:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lineWidthLabel);
+            this.Controls.Add(this.spinLineWidth);
+            this.Controls.Add(this.colourLabel);
+            this.Controls.Add(this.colourBtn);
+            this.Controls.Add(this.selectionLabel);
+            this.Controls.Add(this.actionLabel);
             this.Controls.Add(this.degreesLabel);
             this.Controls.Add(this.angleLabel);
             this.Controls.Add(this.angle);
             this.Controls.Add(this.PreviousShape);
             this.Controls.Add(this.NextShape);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.actionCombo);
             this.Name = "Form1";
             this.Text = "Drawing App";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.angle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,14 +221,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox actionCombo;
         private System.Windows.Forms.Button NextShape;
         private System.Windows.Forms.Button PreviousShape;
         private System.Windows.Forms.NumericUpDown angle;
         private System.Windows.Forms.Label angleLabel;
         private System.Windows.Forms.Label degreesLabel;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label actionLabel;
+        private System.Windows.Forms.Label selectionLabel;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button colourBtn;
+        private System.Windows.Forms.Label colourLabel;
+        private System.Windows.Forms.NumericUpDown spinLineWidth;
+        private System.Windows.Forms.Label lineWidthLabel;
     }
 }
 
