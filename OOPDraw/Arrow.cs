@@ -8,11 +8,11 @@ namespace OOPDraw
         private Line LeftTip { get; set; }
         private Line RightTip { get; set; }
 
-        public Arrow(float xOrigin, float yOrigin, Color colour, float lineWidth, float length, float angle) : base(xOrigin, yOrigin, colour, lineWidth)
+        public Arrow(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize)
         {
-            Shaft = new Line(xOrigin, yOrigin, colour, lineWidth, length, angle);
-            LeftTip = new Line(xOrigin, yOrigin, colour, lineWidth, 20, angle - 30);
-            RightTip = new Line(xOrigin, yOrigin, colour, lineWidth, 20, angle + 30);
+            Shaft = new Line(xOrigin, yOrigin, colour, penSize, length, angle);
+            LeftTip = new Line(xOrigin, yOrigin, colour, penSize, 20, angle - 30);
+            RightTip = new Line(xOrigin, yOrigin, colour, penSize, 20, angle + 30);
         }
 
         public override void Draw()

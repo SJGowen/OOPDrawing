@@ -14,17 +14,17 @@ namespace OOPDraw
         private Rectangle WindowDownstairsRight { get; set; }
         private Rectangle WindowUpstairsRight { get; set; }
 
-        public House(float xOrigin, float yOrigin, Color colour, float lineWidth, float width, float wallHeight) : base(xOrigin, yOrigin, colour, lineWidth)
+        public House(float xOrigin, float yOrigin, Color colour, float penSize, float width, float wallHeight) : base(xOrigin, yOrigin, colour, penSize)
         {
             WallWidth = width;
             WallHeight = wallHeight;
-            Walls = new Rectangle(xOrigin, yOrigin, colour, lineWidth, WallWidth, WallHeight);
-            Roof = new IsoscelesRightAngledTriangle(xOrigin, yOrigin + WallHeight, colour, lineWidth, WallWidth);
-            Door = new Rectangle(xOrigin + WallWidth / 2 - WallWidth / 10, yOrigin, colour, lineWidth, WallWidth / 5, WallHeight / 2 - WallHeight / 8);
-            WindowDownstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8, colour, lineWidth, WallWidth / 4, WallHeight / 4);
-            WindowUpstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8 * 5, colour, lineWidth, WallWidth / 4, WallHeight / 4);
-            WindowDownstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8, colour, lineWidth, WallWidth / 4, WallHeight / 4);
-            WindowUpstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8 * 5, colour, lineWidth, WallWidth / 4, WallHeight / 4);
+            Walls = new Rectangle(xOrigin, yOrigin, colour, penSize, WallWidth, WallHeight);
+            Roof = new IsoscelesRightAngledTriangle(xOrigin, yOrigin + WallHeight, colour, penSize, WallWidth);
+            Door = new Rectangle(xOrigin + WallWidth / 2 - WallWidth / 10, yOrigin, colour, penSize, WallWidth / 5, WallHeight / 2 - WallHeight / 8);
+            WindowDownstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8, colour, penSize, WallWidth / 4, WallHeight / 4);
+            WindowUpstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8 * 5, colour, penSize, WallWidth / 4, WallHeight / 4);
+            WindowDownstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8, colour, penSize, WallWidth / 4, WallHeight / 4);
+            WindowUpstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8 * 5, colour, penSize, WallWidth / 4, WallHeight / 4);
         }
 
         public override void Draw()

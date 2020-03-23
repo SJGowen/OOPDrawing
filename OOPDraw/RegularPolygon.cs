@@ -8,7 +8,7 @@ namespace OOPDraw
         public float SideLength { get; set; }
         public int Sides { get; set; }
 
-        public RegularPolygon(float xOrigin, float yOrigin, Color colour, float lineWidth, float sideLength, int sides) : base(xOrigin, yOrigin, colour, lineWidth)
+        public RegularPolygon(float xOrigin, float yOrigin, Color colour, float penSize, float sideLength, int sides) : base(xOrigin, yOrigin, colour, penSize)
         {
             SideLength = sideLength;
             Sides = sides;

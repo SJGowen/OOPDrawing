@@ -8,35 +8,35 @@ namespace OOPDraw
     {
         private float XOrigin { get; set; }
         private float YOrigin { get; set; }
-        private float LineWidth { get; set; }
+        private float PenSize { get; set; }
         public Color Colour { get; set; }
         
-        private float OriginalLineWidth;
+        private float OriginalPenSize;
 
 
-        public Shape(float xOrigin, float yOrigin, Color colour, float lineWidth)
+        public Shape(float xOrigin, float yOrigin, Color colour, float penSize)
         {
             XOrigin = xOrigin;
             YOrigin = yOrigin;
             Colour = colour;
-            LineWidth = lineWidth;
+            PenSize = penSize;
         }
 
         public virtual void Select()
         {
-            OriginalLineWidth = LineWidth;
-            LineWidth = 4;
+            OriginalPenSize = PenSize;
+            PenSize = 4;
         }
 
         public virtual void Unselect()
         {
-            LineWidth = OriginalLineWidth;
+            PenSize = OriginalPenSize;
         }
 
         protected void ResetTurtle()
         {
             Turtle.ShowTurtle = false;
-            Turtle.PenSize = LineWidth;
+            Turtle.PenSize = PenSize;
             Turtle.Angle = 0;
             Turtle.X = XOrigin;
             Turtle.Y = YOrigin;

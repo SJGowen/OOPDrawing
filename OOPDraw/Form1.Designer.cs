@@ -28,27 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.actionCombo = new System.Windows.Forms.ComboBox();
+            this.ActionCombo = new System.Windows.Forms.ComboBox();
             this.NextShape = new System.Windows.Forms.Button();
             this.PreviousShape = new System.Windows.Forms.Button();
-            this.angleSpin = new System.Windows.Forms.NumericUpDown();
+            this.AngleSpin = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
             this.degreesLabel = new System.Windows.Forms.Label();
             this.actionLabel = new System.Windows.Forms.Label();
             this.selectionLabel = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.colourBtn = new System.Windows.Forms.Button();
+            this.ColourBtn = new System.Windows.Forms.Button();
             this.colourLabel = new System.Windows.Forms.Label();
-            this.spinLineWidth = new System.Windows.Forms.NumericUpDown();
-            this.lineWidthLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.angleSpin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).BeginInit();
+            this.PenSizeSpin = new System.Windows.Forms.NumericUpDown();
+            this.PenSizeLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).BeginInit();
             this.SuspendLayout();
             // 
-            // actionCombo
+            // ActionCombo
             // 
-            this.actionCombo.FormattingEnabled = true;
-            this.actionCombo.Items.AddRange(new object[] {
+            this.ActionCombo.FormattingEnabled = true;
+            this.ActionCombo.Items.AddRange(new object[] {
             "Draw Line",
             "Draw Circle",
             "Draw Isosceles Triangle",
@@ -63,11 +63,11 @@
             "Draw Arrow",
             "Move Shape",
             "Resize Shape"});
-            this.actionCombo.Location = new System.Drawing.Point(108, 6);
-            this.actionCombo.Name = "actionCombo";
-            this.actionCombo.Size = new System.Drawing.Size(156, 21);
-            this.actionCombo.TabIndex = 0;
-            this.actionCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.ActionCombo.Location = new System.Drawing.Point(108, 6);
+            this.ActionCombo.Name = "ActionCombo";
+            this.ActionCombo.Size = new System.Drawing.Size(156, 21);
+            this.ActionCombo.TabIndex = 0;
+            this.ActionCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // NextShape
             // 
@@ -89,23 +89,23 @@
             this.PreviousShape.UseVisualStyleBackColor = true;
             this.PreviousShape.Click += new System.EventHandler(this.PreviousShape_Click);
             // 
-            // angleSpin
+            // AngleSpin
             // 
-            this.angleSpin.Increment = new decimal(new int[] {
+            this.AngleSpin.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.angleSpin.Location = new System.Drawing.Point(502, 7);
-            this.angleSpin.Maximum = new decimal(new int[] {
+            this.AngleSpin.Location = new System.Drawing.Point(502, 7);
+            this.AngleSpin.Maximum = new decimal(new int[] {
             359,
             0,
             0,
             0});
-            this.angleSpin.Name = "angleSpin";
-            this.angleSpin.Size = new System.Drawing.Size(41, 20);
-            this.angleSpin.TabIndex = 3;
-            this.angleSpin.Visible = false;
+            this.AngleSpin.Name = "AngleSpin";
+            this.AngleSpin.Size = new System.Drawing.Size(41, 20);
+            this.AngleSpin.TabIndex = 3;
+            this.AngleSpin.Visible = false;
             // 
             // angleLabel
             // 
@@ -145,16 +145,16 @@
             this.selectionLabel.TabIndex = 7;
             this.selectionLabel.Text = "Object to Select:";
             // 
-            // colourBtn
+            // ColourBtn
             // 
-            this.colourBtn.ForeColor = System.Drawing.SystemColors.Window;
-            this.colourBtn.Location = new System.Drawing.Point(108, 62);
-            this.colourBtn.Name = "colourBtn";
-            this.colourBtn.Size = new System.Drawing.Size(75, 23);
-            this.colourBtn.TabIndex = 8;
-            this.colourBtn.Text = "Colour";
-            this.colourBtn.UseVisualStyleBackColor = true;
-            this.colourBtn.Click += new System.EventHandler(this.colourBtn_Click);
+            this.ColourBtn.ForeColor = System.Drawing.SystemColors.Window;
+            this.ColourBtn.Location = new System.Drawing.Point(108, 62);
+            this.ColourBtn.Name = "ColourBtn";
+            this.ColourBtn.Size = new System.Drawing.Size(75, 23);
+            this.ColourBtn.TabIndex = 8;
+            this.ColourBtn.Text = "Colour";
+            this.ColourBtn.UseVisualStyleBackColor = true;
+            this.ColourBtn.Click += new System.EventHandler(this.colourBtn_Click);
             // 
             // colourLabel
             // 
@@ -165,59 +165,59 @@
             this.colourLabel.TabIndex = 9;
             this.colourLabel.Text = "Objects Colour:";
             // 
-            // spinLineWidth
+            // PenSizeSpin
             // 
-            this.spinLineWidth.Location = new System.Drawing.Point(108, 91);
-            this.spinLineWidth.Maximum = new decimal(new int[] {
+            this.PenSizeSpin.Location = new System.Drawing.Point(108, 91);
+            this.PenSizeSpin.Maximum = new decimal(new int[] {
             9,
             0,
             0,
             0});
-            this.spinLineWidth.Minimum = new decimal(new int[] {
+            this.PenSizeSpin.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.spinLineWidth.Name = "spinLineWidth";
-            this.spinLineWidth.Size = new System.Drawing.Size(31, 20);
-            this.spinLineWidth.TabIndex = 10;
-            this.spinLineWidth.Value = new decimal(new int[] {
+            this.PenSizeSpin.Name = "PenSizeSpin";
+            this.PenSizeSpin.Size = new System.Drawing.Size(31, 20);
+            this.PenSizeSpin.TabIndex = 10;
+            this.PenSizeSpin.Value = new decimal(new int[] {
             2,
             0,
             0,
             0});
             // 
-            // lineWidthLabel
+            // PenSizeLabel
             // 
-            this.lineWidthLabel.AutoSize = true;
-            this.lineWidthLabel.Location = new System.Drawing.Point(41, 93);
-            this.lineWidthLabel.Name = "lineWidthLabel";
-            this.lineWidthLabel.Size = new System.Drawing.Size(61, 13);
-            this.lineWidthLabel.TabIndex = 11;
-            this.lineWidthLabel.Text = "Line Width:";
+            this.PenSizeLabel.AutoSize = true;
+            this.PenSizeLabel.Location = new System.Drawing.Point(50, 93);
+            this.PenSizeLabel.Name = "PenSizeLabel";
+            this.PenSizeLabel.Size = new System.Drawing.Size(52, 13);
+            this.PenSizeLabel.TabIndex = 11;
+            this.PenSizeLabel.Text = "Pen Size:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lineWidthLabel);
-            this.Controls.Add(this.spinLineWidth);
+            this.Controls.Add(this.PenSizeLabel);
+            this.Controls.Add(this.PenSizeSpin);
             this.Controls.Add(this.colourLabel);
-            this.Controls.Add(this.colourBtn);
+            this.Controls.Add(this.ColourBtn);
             this.Controls.Add(this.selectionLabel);
             this.Controls.Add(this.actionLabel);
             this.Controls.Add(this.degreesLabel);
             this.Controls.Add(this.angleLabel);
-            this.Controls.Add(this.angleSpin);
+            this.Controls.Add(this.AngleSpin);
             this.Controls.Add(this.PreviousShape);
             this.Controls.Add(this.NextShape);
-            this.Controls.Add(this.actionCombo);
+            this.Controls.Add(this.ActionCombo);
             this.Name = "Form1";
             this.Text = "Drawing App";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-            ((System.ComponentModel.ISupportInitialize)(this.angleSpin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,19 +225,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox actionCombo;
+        private System.Windows.Forms.ComboBox ActionCombo;
         private System.Windows.Forms.Button NextShape;
         private System.Windows.Forms.Button PreviousShape;
-        private System.Windows.Forms.NumericUpDown angleSpin;
+        private System.Windows.Forms.NumericUpDown AngleSpin;
         private System.Windows.Forms.Label angleLabel;
         private System.Windows.Forms.Label degreesLabel;
         private System.Windows.Forms.Label actionLabel;
         private System.Windows.Forms.Label selectionLabel;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button colourBtn;
+        private System.Windows.Forms.Button ColourBtn;
         private System.Windows.Forms.Label colourLabel;
-        private System.Windows.Forms.NumericUpDown spinLineWidth;
-        private System.Windows.Forms.Label lineWidthLabel;
+        private System.Windows.Forms.NumericUpDown PenSizeSpin;
+        private System.Windows.Forms.Label PenSizeLabel;
     }
 }
 

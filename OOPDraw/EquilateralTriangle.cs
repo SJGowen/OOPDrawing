@@ -4,7 +4,7 @@ namespace OOPDraw
 {
     internal class EquilateralTriangle : RegularPolygon
     {
-        public EquilateralTriangle(float xOrigin, float yOrigin, Color colour, float lineWidth, float sideLength) : base(xOrigin, yOrigin, colour, lineWidth, sideLength, 3)
+        public EquilateralTriangle(float xOrigin, float yOrigin, Color colour, float penSize, float sideLength) : base(xOrigin, yOrigin, colour, penSize, sideLength, 3)
         {
         }
     }

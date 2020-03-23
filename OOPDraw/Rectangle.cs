@@ -8,7 +8,7 @@ namespace OOPDraw
         private float Width { get; set; }
         private float Height { get; set; }
 
-        public Rectangle(float xOrigin, float yOrigin, Color colour, float lineWidth, float width, float height) : base(xOrigin, yOrigin, colour, lineWidth)
+        public Rectangle(float xOrigin, float yOrigin, Color colour, float penSize, float width, float height) : base(xOrigin, yOrigin, colour, penSize)
         {
             Width = width;
             Height = height;

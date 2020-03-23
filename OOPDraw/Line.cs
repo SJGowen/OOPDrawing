@@ -8,7 +8,7 @@ namespace OOPDraw
         protected float Length { get; set; }
         protected float Angle { get; set; }
 
-        public Line(float xOrigin, float yOrigin, Color colour, float lineWidth, float length, float angle) : base(xOrigin, yOrigin, colour, lineWidth)
+        public Line(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize)
         {
             Length = length;
             Angle = angle;

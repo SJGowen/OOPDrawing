@@ -8,7 +8,7 @@ namespace OOPDraw
     {
         private float BaseLength { get; set; }
 
-        public IsoscelesRightAngledTriangle(float xOrigin, float yOrigin, Color colour, float lineWidth, float baseLength) : base(xOrigin, yOrigin, colour, lineWidth)
+        public IsoscelesRightAngledTriangle(float xOrigin, float yOrigin, Color colour, float penSize, float baseLength) : base(xOrigin, yOrigin, colour, penSize)
         {
             BaseLength = baseLength;
         }

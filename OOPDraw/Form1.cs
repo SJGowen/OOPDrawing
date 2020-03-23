@@ -10,15 +10,15 @@ namespace OOPDraw
         public Form1()
         {
             InitializeComponent();
-            colourBtn.BackColor = Turtle.DefaultColor;
-            actionCombo.SelectedIndex = 0;
+            ColourBtn.BackColor = Turtle.DefaultColor;
+            ActionCombo.SelectedIndex = 0;
         }
 
         private List<Shape> Shapes = new List<Shape>();
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            var selectedItem = (string)actionCombo.SelectedItem;
+            var selectedItem = (string)ActionCombo.SelectedItem;
             var xOrigin = e.X - Width / 2 + 8;
             var yOrigin = Height / 2 - e.Y - 19;
 
@@ -40,23 +40,23 @@ namespace OOPDraw
 
         private Shape shapeToAdd(int xOrigin, int yOrigin, string selectedItem)
         {
-            var colour = colourBtn.BackColor;
-            var lineWidth = (float)spinLineWidth.Value;
-            var angle = (float)angleSpin.Value;
+            var colour = ColourBtn.BackColor;
+            var penSize = (float)PenSizeSpin.Value;
+            var angle = (float)AngleSpin.Value;
             switch (selectedItem)
             {
-                case "Draw Circle": return new Circle(xOrigin, yOrigin, colour, lineWidth, 100);
-                case "Draw Isosceles Triangle": return new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, lineWidth, 100);
-                case "Draw Equilateral Triangle": return new EquilateralTriangle(xOrigin, yOrigin, colour, lineWidth, 100);
-                case "Draw Square": return new Square(xOrigin, yOrigin, colour, lineWidth, 90);
-                case "Draw Pentagon": return new Pentagon(xOrigin, yOrigin, colour, lineWidth, 80);
-                case "Draw Hexagon": return new Hexagon(xOrigin, yOrigin, colour, lineWidth, 70);
-                case "Draw Heptagon": return new Heptagon(xOrigin, yOrigin, colour, lineWidth, 60);
-                case "Draw Octagon": return new Octagon(xOrigin, yOrigin, colour, lineWidth, 50);
-                case "Draw Rectangle": return new Rectangle(xOrigin, yOrigin, colour, lineWidth, 100, 50);
-                case "Draw House": return new House(xOrigin, yOrigin, colour, lineWidth, 100, 80);
-                case "Draw Arrow": return new Arrow(xOrigin, yOrigin, colour, lineWidth, 100, angle);
-                default: return new Line(xOrigin, yOrigin, colour, lineWidth, 100, angle);
+                case "Draw Circle": return new Circle(xOrigin, yOrigin, colour, penSize, 100);
+                case "Draw Isosceles Triangle": return new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, penSize, 100);
+                case "Draw Equilateral Triangle": return new EquilateralTriangle(xOrigin, yOrigin, colour, penSize, 100);
+                case "Draw Square": return new Square(xOrigin, yOrigin, colour, penSize, 90);
+                case "Draw Pentagon": return new Pentagon(xOrigin, yOrigin, colour, penSize, 80);
+                case "Draw Hexagon": return new Hexagon(xOrigin, yOrigin, colour, penSize, 70);
+                case "Draw Heptagon": return new Heptagon(xOrigin, yOrigin, colour, penSize, 60);
+                case "Draw Octagon": return new Octagon(xOrigin, yOrigin, colour, penSize, 50);
+                case "Draw Rectangle": return new Rectangle(xOrigin, yOrigin, colour, penSize, 100, 50);
+                case "Draw House": return new House(xOrigin, yOrigin, colour, penSize, 100, 80);
+                case "Draw Arrow": return new Arrow(xOrigin, yOrigin, colour, penSize, 100, angle);
+                default: return new Line(xOrigin, yOrigin, colour, penSize, 100, angle);
             }
         }
 
@@ -107,9 +107,9 @@ namespace OOPDraw
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = (string)actionCombo.SelectedItem;
+            var selectedItem = (string)ActionCombo.SelectedItem;
             var visible = selectedItem == "Draw Line" || selectedItem == "Draw Arrow";
-            angleSpin.Visible = visible;
+            AngleSpin.Visible = visible;
             angleLabel.Visible = visible;
             degreesLabel.Visible = visible;
         }
@@ -118,7 +118,7 @@ namespace OOPDraw
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
-                colourBtn.BackColor = colorDialog1.Color;
+                ColourBtn.BackColor = colorDialog1.Color;
             }
         }
     }
