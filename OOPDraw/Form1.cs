@@ -18,50 +18,67 @@ namespace OOPDraw
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
-            var turtleX = e.X - Width / 2 + 8;
-            var turtleY = Height / 2 - e.Y - 19;
+            var xOrigin = e.X - Width / 2 + 8;
+            var yOrigin = Height / 2 - e.Y - 19;
             var selectedItem = (string)actionCombo.SelectedItem;
             var colour = colourBtn.BackColor;
             var lineWidth = (float)spinLineWidth.Value;
+
             if (selectedItem == "Draw Line")
             {
-                AddShape(new Line(turtleX, turtleY, colour, lineWidth, 100, (float)angle.Value));
+                AddShape(new Line(xOrigin, yOrigin, colour, lineWidth, 100, (float)angle.Value));
             }
             else if (selectedItem == "Draw Circle")
             {
-                AddShape(new Circle(turtleX, turtleY, colour, lineWidth, 100));
-            }
-            else if (selectedItem == "Draw Equilateral Triangle")
-            {
-                AddShape(new EquilateralTriangle(turtleX, turtleY, colour, lineWidth, 100));
+                AddShape(new Circle(xOrigin, yOrigin, colour, lineWidth, 100));
             }
             else if (selectedItem == "Draw Isosceles Triangle")
             {
-                AddShape(new IsoscelesRightAngledTriangle(turtleX, turtleY, colour, lineWidth, 100));
+                AddShape(new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, lineWidth, 100));
+            }
+            else if (selectedItem == "Draw Equilateral Triangle")
+            {
+                AddShape(new EquilateralTriangle(xOrigin, yOrigin, colour, lineWidth, 100));
             }
             else if (selectedItem == "Draw Square")
             {
-                AddShape(new Rectangle(turtleX, turtleY, colour, lineWidth, 100, 100));
+                AddShape(new Square(xOrigin, yOrigin, colour, lineWidth, 90));
+            }
+            else if (selectedItem == "Draw Pentagon")
+            {
+                AddShape(new Pentagon(xOrigin, yOrigin, colour, lineWidth, 80));
+            }
+            else if (selectedItem == "Draw Hexagon")
+            {
+                AddShape(new Hexagon(xOrigin, yOrigin, colour, lineWidth, 70));
+            }
+            else if (selectedItem == "Draw Heptagon")
+            {
+                AddShape(new Heptagon(xOrigin, yOrigin, colour, lineWidth, 60));
+            }
+            else if (selectedItem == "Draw Octagon")
+            {
+                AddShape(new Octagon(xOrigin, yOrigin, colour, lineWidth, 50));
             }
             else if (selectedItem == "Draw Rectangle")
             {
-                AddShape(new Rectangle(turtleX, turtleY, colour, lineWidth, 100, 50));
+                AddShape(new Rectangle(xOrigin, yOrigin, colour, lineWidth, 100, 50));
             }
             else if (selectedItem == "Draw House")
             {
-                AddShape(new House(turtleX, turtleY, colour, lineWidth, 100, 80));
+                AddShape(new House(xOrigin, yOrigin, colour, lineWidth, 100, 80));
             }
             else if (selectedItem == "Draw Arrow")
             {
-                AddShape(new Arrow(turtleX, turtleY, colour, lineWidth, 100, (float)angle.Value));
+                AddShape(new Arrow(xOrigin, yOrigin, colour, lineWidth, 100, (float)angle.Value));
             }
             else if (selectedItem == "Move Shape")
             {
-                ActiveShape().MoveTo(turtleX, turtleY);
+                ActiveShape().MoveTo(xOrigin, yOrigin);
             }
             else if (selectedItem == "Resize Shape")
             {
-                ActiveShape().ResizeAbsolute(turtleX, turtleY);
+                ActiveShape().ResizeAbsolute(xOrigin, yOrigin);
             }
 
             DrawAll();
