@@ -32,17 +32,20 @@
             this.NextShape = new System.Windows.Forms.Button();
             this.PreviousShape = new System.Windows.Forms.Button();
             this.AngleSpin = new System.Windows.Forms.NumericUpDown();
-            this.angleLabel = new System.Windows.Forms.Label();
-            this.degreesLabel = new System.Windows.Forms.Label();
-            this.actionLabel = new System.Windows.Forms.Label();
-            this.selectionLabel = new System.Windows.Forms.Label();
+            this.AngleLabel = new System.Windows.Forms.Label();
+            this.DegreesLabel = new System.Windows.Forms.Label();
+            this.ActionLabel = new System.Windows.Forms.Label();
+            this.SelectionLabel = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.ColourBtn = new System.Windows.Forms.Button();
-            this.colourLabel = new System.Windows.Forms.Label();
+            this.ColourLabel = new System.Windows.Forms.Label();
             this.PenSizeSpin = new System.Windows.Forms.NumericUpDown();
             this.PenSizeLabel = new System.Windows.Forms.Label();
+            this.SideLengthLabel = new System.Windows.Forms.Label();
+            this.SideLengthSpin = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SideLengthSpin)).BeginInit();
             this.SuspendLayout();
             // 
             // ActionCombo
@@ -107,43 +110,43 @@
             this.AngleSpin.TabIndex = 3;
             this.AngleSpin.Visible = false;
             // 
-            // angleLabel
+            // AngleLabel
             // 
-            this.angleLabel.AutoSize = true;
-            this.angleLabel.Location = new System.Drawing.Point(270, 9);
-            this.angleLabel.Name = "angleLabel";
-            this.angleLabel.Size = new System.Drawing.Size(226, 13);
-            this.angleLabel.TabIndex = 4;
-            this.angleLabel.Text = "The Angle that Lines and Arrows are drawn at:";
-            this.angleLabel.Visible = false;
+            this.AngleLabel.AutoSize = true;
+            this.AngleLabel.Location = new System.Drawing.Point(270, 9);
+            this.AngleLabel.Name = "AngleLabel";
+            this.AngleLabel.Size = new System.Drawing.Size(226, 13);
+            this.AngleLabel.TabIndex = 4;
+            this.AngleLabel.Text = "The Angle that Lines and Arrows are drawn at:";
+            this.AngleLabel.Visible = false;
             // 
-            // degreesLabel
+            // DegreesLabel
             // 
-            this.degreesLabel.AutoSize = true;
-            this.degreesLabel.Location = new System.Drawing.Point(549, 9);
-            this.degreesLabel.Name = "degreesLabel";
-            this.degreesLabel.Size = new System.Drawing.Size(45, 13);
-            this.degreesLabel.TabIndex = 5;
-            this.degreesLabel.Text = "degrees";
-            this.degreesLabel.Visible = false;
+            this.DegreesLabel.AutoSize = true;
+            this.DegreesLabel.Location = new System.Drawing.Point(549, 9);
+            this.DegreesLabel.Name = "DegreesLabel";
+            this.DegreesLabel.Size = new System.Drawing.Size(45, 13);
+            this.DegreesLabel.TabIndex = 5;
+            this.DegreesLabel.Text = "degrees";
+            this.DegreesLabel.Visible = false;
             // 
-            // actionLabel
+            // ActionLabel
             // 
-            this.actionLabel.AutoSize = true;
-            this.actionLabel.Location = new System.Drawing.Point(12, 9);
-            this.actionLabel.Name = "actionLabel";
-            this.actionLabel.Size = new System.Drawing.Size(90, 13);
-            this.actionLabel.TabIndex = 6;
-            this.actionLabel.Text = "Action to perform:";
+            this.ActionLabel.AutoSize = true;
+            this.ActionLabel.Location = new System.Drawing.Point(12, 9);
+            this.ActionLabel.Name = "ActionLabel";
+            this.ActionLabel.Size = new System.Drawing.Size(90, 13);
+            this.ActionLabel.TabIndex = 6;
+            this.ActionLabel.Text = "Action to perform:";
             // 
-            // selectionLabel
+            // SelectionLabel
             // 
-            this.selectionLabel.AutoSize = true;
-            this.selectionLabel.Location = new System.Drawing.Point(16, 38);
-            this.selectionLabel.Name = "selectionLabel";
-            this.selectionLabel.Size = new System.Drawing.Size(86, 13);
-            this.selectionLabel.TabIndex = 7;
-            this.selectionLabel.Text = "Object to Select:";
+            this.SelectionLabel.AutoSize = true;
+            this.SelectionLabel.Location = new System.Drawing.Point(16, 38);
+            this.SelectionLabel.Name = "SelectionLabel";
+            this.SelectionLabel.Size = new System.Drawing.Size(86, 13);
+            this.SelectionLabel.TabIndex = 7;
+            this.SelectionLabel.Text = "Object to Select:";
             // 
             // ColourBtn
             // 
@@ -156,18 +159,18 @@
             this.ColourBtn.UseVisualStyleBackColor = true;
             this.ColourBtn.Click += new System.EventHandler(this.colourBtn_Click);
             // 
-            // colourLabel
+            // ColourLabel
             // 
-            this.colourLabel.AutoSize = true;
-            this.colourLabel.Location = new System.Drawing.Point(23, 67);
-            this.colourLabel.Name = "colourLabel";
-            this.colourLabel.Size = new System.Drawing.Size(79, 13);
-            this.colourLabel.TabIndex = 9;
-            this.colourLabel.Text = "Objects Colour:";
+            this.ColourLabel.AutoSize = true;
+            this.ColourLabel.Location = new System.Drawing.Point(23, 67);
+            this.ColourLabel.Name = "ColourLabel";
+            this.ColourLabel.Size = new System.Drawing.Size(79, 13);
+            this.ColourLabel.TabIndex = 9;
+            this.ColourLabel.Text = "Objects Colour:";
             // 
             // PenSizeSpin
             // 
-            this.PenSizeSpin.Location = new System.Drawing.Point(108, 91);
+            this.PenSizeSpin.Location = new System.Drawing.Point(233, 91);
             this.PenSizeSpin.Maximum = new decimal(new int[] {
             9,
             0,
@@ -190,25 +193,63 @@
             // PenSizeLabel
             // 
             this.PenSizeLabel.AutoSize = true;
-            this.PenSizeLabel.Location = new System.Drawing.Point(50, 93);
+            this.PenSizeLabel.Location = new System.Drawing.Point(175, 93);
             this.PenSizeLabel.Name = "PenSizeLabel";
             this.PenSizeLabel.Size = new System.Drawing.Size(52, 13);
             this.PenSizeLabel.TabIndex = 11;
             this.PenSizeLabel.Text = "Pen Size:";
+            // 
+            // SideLengthLabel
+            // 
+            this.SideLengthLabel.AutoSize = true;
+            this.SideLengthLabel.Location = new System.Drawing.Point(35, 93);
+            this.SideLengthLabel.Name = "SideLengthLabel";
+            this.SideLengthLabel.Size = new System.Drawing.Size(67, 13);
+            this.SideLengthLabel.TabIndex = 13;
+            this.SideLengthLabel.Text = "Side Length:";
+            // 
+            // SideLengthSpin
+            // 
+            this.SideLengthSpin.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.SideLengthSpin.Location = new System.Drawing.Point(108, 91);
+            this.SideLengthSpin.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.SideLengthSpin.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SideLengthSpin.Name = "SideLengthSpin";
+            this.SideLengthSpin.Size = new System.Drawing.Size(48, 20);
+            this.SideLengthSpin.TabIndex = 12;
+            this.SideLengthSpin.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SideLengthLabel);
+            this.Controls.Add(this.SideLengthSpin);
             this.Controls.Add(this.PenSizeLabel);
             this.Controls.Add(this.PenSizeSpin);
-            this.Controls.Add(this.colourLabel);
+            this.Controls.Add(this.ColourLabel);
             this.Controls.Add(this.ColourBtn);
-            this.Controls.Add(this.selectionLabel);
-            this.Controls.Add(this.actionLabel);
-            this.Controls.Add(this.degreesLabel);
-            this.Controls.Add(this.angleLabel);
+            this.Controls.Add(this.SelectionLabel);
+            this.Controls.Add(this.ActionLabel);
+            this.Controls.Add(this.DegreesLabel);
+            this.Controls.Add(this.AngleLabel);
             this.Controls.Add(this.AngleSpin);
             this.Controls.Add(this.PreviousShape);
             this.Controls.Add(this.NextShape);
@@ -218,6 +259,7 @@
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.SideLengthSpin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,15 +271,17 @@
         private System.Windows.Forms.Button NextShape;
         private System.Windows.Forms.Button PreviousShape;
         private System.Windows.Forms.NumericUpDown AngleSpin;
-        private System.Windows.Forms.Label angleLabel;
-        private System.Windows.Forms.Label degreesLabel;
-        private System.Windows.Forms.Label actionLabel;
-        private System.Windows.Forms.Label selectionLabel;
+        private System.Windows.Forms.Label AngleLabel;
+        private System.Windows.Forms.Label DegreesLabel;
+        private System.Windows.Forms.Label ActionLabel;
+        private System.Windows.Forms.Label SelectionLabel;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button ColourBtn;
-        private System.Windows.Forms.Label colourLabel;
+        private System.Windows.Forms.Label ColourLabel;
         private System.Windows.Forms.NumericUpDown PenSizeSpin;
         private System.Windows.Forms.Label PenSizeLabel;
+        private System.Windows.Forms.Label SideLengthLabel;
+        private System.Windows.Forms.NumericUpDown SideLengthSpin;
     }
 }
 

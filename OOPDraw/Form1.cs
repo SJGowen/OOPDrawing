@@ -43,20 +43,33 @@ namespace OOPDraw
             var colour = ColourBtn.BackColor;
             var penSize = (float)PenSizeSpin.Value;
             var angle = (float)AngleSpin.Value;
+            var sideLength = (float)SideLengthSpin.Value;
             switch (selectedItem)
             {
-                case "Draw Circle": return new Circle(xOrigin, yOrigin, colour, penSize, 100);
-                case "Draw Isosceles Triangle": return new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, penSize, 100);
-                case "Draw Equilateral Triangle": return new EquilateralTriangle(xOrigin, yOrigin, colour, penSize, 100);
-                case "Draw Square": return new Square(xOrigin, yOrigin, colour, penSize, 90);
-                case "Draw Pentagon": return new Pentagon(xOrigin, yOrigin, colour, penSize, 80);
-                case "Draw Hexagon": return new Hexagon(xOrigin, yOrigin, colour, penSize, 70);
-                case "Draw Heptagon": return new Heptagon(xOrigin, yOrigin, colour, penSize, 60);
-                case "Draw Octagon": return new Octagon(xOrigin, yOrigin, colour, penSize, 50);
-                case "Draw Rectangle": return new Rectangle(xOrigin, yOrigin, colour, penSize, 100, 50);
-                case "Draw House": return new House(xOrigin, yOrigin, colour, penSize, 100, 80);
-                case "Draw Arrow": return new Arrow(xOrigin, yOrigin, colour, penSize, 100, angle);
-                default: return new Line(xOrigin, yOrigin, colour, penSize, 100, angle);
+                case "Draw Circle": 
+                     return new Circle(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Isosceles Triangle": 
+                    return new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Equilateral Triangle": 
+                    return new EquilateralTriangle(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Square": 
+                    return new Square(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Pentagon": 
+                    return new Pentagon(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Hexagon": 
+                    return new Hexagon(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Heptagon": 
+                    return new Heptagon(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Octagon": 
+                    return new Octagon(xOrigin, yOrigin, colour, penSize, sideLength);
+                case "Draw Rectangle": 
+                    return new Rectangle(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 2);
+                case "Draw House": 
+                    return new House(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 10 * 8);
+                case "Draw Arrow": 
+                    return new Arrow(xOrigin, yOrigin, colour, penSize, sideLength, angle);
+                default: 
+                    return new Line(xOrigin, yOrigin, colour, penSize, sideLength, angle);
             }
         }
 
@@ -110,8 +123,30 @@ namespace OOPDraw
             var selectedItem = (string)ActionCombo.SelectedItem;
             var visible = selectedItem == "Draw Line" || selectedItem == "Draw Arrow";
             AngleSpin.Visible = visible;
-            angleLabel.Visible = visible;
-            degreesLabel.Visible = visible;
+            AngleLabel.Visible = visible;
+            DegreesLabel.Visible = visible;
+            SideLengthSpin.Value = getSideLengthValue(selectedItem);
+        }
+
+        private decimal getSideLengthValue(string selectedItem)
+        {
+            switch (selectedItem)
+            {
+                case "Draw Circle": 
+                    return 5;
+                case "Draw Square":
+                    return 90;
+                case "Draw Pentagon":
+                    return 80;
+                case "Draw Hexagon":
+                    return 70;
+                case "Draw Heptagon":
+                    return 60;
+                case "Draw Octagon":
+                    return 50;
+                default:
+                    return 100;
+            }
         }
 
         private void colourBtn_Click(object sender, EventArgs e)

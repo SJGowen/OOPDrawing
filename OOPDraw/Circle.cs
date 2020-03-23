@@ -9,17 +9,17 @@ namespace OOPDraw
 
         public Circle(float xOrigin, float yOrigin, Color colour, float penSize, float baseLength) : base(xOrigin, yOrigin, colour, penSize)
         {
-            BaseLenth = baseLength / 10;
+            BaseLenth = baseLength;
         }
 
         public override void Draw()
         {
             ResetTurtle();
             Turtle.PenColor = Colour;
-            for (int i = 0; i < 36; i++)
+            for (int i = 0; i < 72; i++)
             {
                 Turtle.Forward(BaseLenth);
-                Turtle.Rotate(10);
+                Turtle.Rotate(5);
             }
         }
 
