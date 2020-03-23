@@ -1,7 +1,6 @@
 ﻿using Nakov.TurtleGraphics;
 using System.Drawing;
 
-
 namespace OOPDraw
 {
     public class Circle : Shape

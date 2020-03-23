@@ -31,7 +31,7 @@
             this.actionCombo = new System.Windows.Forms.ComboBox();
             this.NextShape = new System.Windows.Forms.Button();
             this.PreviousShape = new System.Windows.Forms.Button();
-            this.angle = new System.Windows.Forms.NumericUpDown();
+            this.angleSpin = new System.Windows.Forms.NumericUpDown();
             this.angleLabel = new System.Windows.Forms.Label();
             this.degreesLabel = new System.Windows.Forms.Label();
             this.actionLabel = new System.Windows.Forms.Label();
@@ -41,7 +41,7 @@
             this.colourLabel = new System.Windows.Forms.Label();
             this.spinLineWidth = new System.Windows.Forms.NumericUpDown();
             this.lineWidthLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.angle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angleSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,23 +89,23 @@
             this.PreviousShape.UseVisualStyleBackColor = true;
             this.PreviousShape.Click += new System.EventHandler(this.PreviousShape_Click);
             // 
-            // angle
+            // angleSpin
             // 
-            this.angle.Increment = new decimal(new int[] {
+            this.angleSpin.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.angle.Location = new System.Drawing.Point(502, 7);
-            this.angle.Maximum = new decimal(new int[] {
+            this.angleSpin.Location = new System.Drawing.Point(502, 7);
+            this.angleSpin.Maximum = new decimal(new int[] {
             359,
             0,
             0,
             0});
-            this.angle.Name = "angle";
-            this.angle.Size = new System.Drawing.Size(41, 20);
-            this.angle.TabIndex = 3;
-            this.angle.Visible = false;
+            this.angleSpin.Name = "angleSpin";
+            this.angleSpin.Size = new System.Drawing.Size(41, 20);
+            this.angleSpin.TabIndex = 3;
+            this.angleSpin.Visible = false;
             // 
             // angleLabel
             // 
@@ -209,14 +209,14 @@
             this.Controls.Add(this.actionLabel);
             this.Controls.Add(this.degreesLabel);
             this.Controls.Add(this.angleLabel);
-            this.Controls.Add(this.angle);
+            this.Controls.Add(this.angleSpin);
             this.Controls.Add(this.PreviousShape);
             this.Controls.Add(this.NextShape);
             this.Controls.Add(this.actionCombo);
             this.Name = "Form1";
             this.Text = "Drawing App";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-            ((System.ComponentModel.ISupportInitialize)(this.angle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angleSpin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinLineWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -228,7 +228,7 @@
         private System.Windows.Forms.ComboBox actionCombo;
         private System.Windows.Forms.Button NextShape;
         private System.Windows.Forms.Button PreviousShape;
-        private System.Windows.Forms.NumericUpDown angle;
+        private System.Windows.Forms.NumericUpDown angleSpin;
         private System.Windows.Forms.Label angleLabel;
         private System.Windows.Forms.Label degreesLabel;
         private System.Windows.Forms.Label actionLabel;

@@ -1,7 +1,6 @@
 ﻿using Nakov.TurtleGraphics;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOPDraw
@@ -12,65 +11,20 @@ namespace OOPDraw
         {
             InitializeComponent();
             colourBtn.BackColor = Turtle.DefaultColor;
+            actionCombo.SelectedIndex = 0;
         }
 
         private List<Shape> Shapes = new List<Shape>();
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
+            var selectedItem = (string)actionCombo.SelectedItem;
             var xOrigin = e.X - Width / 2 + 8;
             var yOrigin = Height / 2 - e.Y - 19;
-            var selectedItem = (string)actionCombo.SelectedItem;
-            var colour = colourBtn.BackColor;
-            var lineWidth = (float)spinLineWidth.Value;
 
-            if (selectedItem == "Draw Line")
+            if (selectedItem.StartsWith("Draw "))
             {
-                AddShape(new Line(xOrigin, yOrigin, colour, lineWidth, 100, (float)angle.Value));
-            }
-            else if (selectedItem == "Draw Circle")
-            {
-                AddShape(new Circle(xOrigin, yOrigin, colour, lineWidth, 100));
-            }
-            else if (selectedItem == "Draw Isosceles Triangle")
-            {
-                AddShape(new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, lineWidth, 100));
-            }
-            else if (selectedItem == "Draw Equilateral Triangle")
-            {
-                AddShape(new EquilateralTriangle(xOrigin, yOrigin, colour, lineWidth, 100));
-            }
-            else if (selectedItem == "Draw Square")
-            {
-                AddShape(new Square(xOrigin, yOrigin, colour, lineWidth, 90));
-            }
-            else if (selectedItem == "Draw Pentagon")
-            {
-                AddShape(new Pentagon(xOrigin, yOrigin, colour, lineWidth, 80));
-            }
-            else if (selectedItem == "Draw Hexagon")
-            {
-                AddShape(new Hexagon(xOrigin, yOrigin, colour, lineWidth, 70));
-            }
-            else if (selectedItem == "Draw Heptagon")
-            {
-                AddShape(new Heptagon(xOrigin, yOrigin, colour, lineWidth, 60));
-            }
-            else if (selectedItem == "Draw Octagon")
-            {
-                AddShape(new Octagon(xOrigin, yOrigin, colour, lineWidth, 50));
-            }
-            else if (selectedItem == "Draw Rectangle")
-            {
-                AddShape(new Rectangle(xOrigin, yOrigin, colour, lineWidth, 100, 50));
-            }
-            else if (selectedItem == "Draw House")
-            {
-                AddShape(new House(xOrigin, yOrigin, colour, lineWidth, 100, 80));
-            }
-            else if (selectedItem == "Draw Arrow")
-            {
-                AddShape(new Arrow(xOrigin, yOrigin, colour, lineWidth, 100, (float)angle.Value));
+                AddShape(shapeToAdd(xOrigin, yOrigin, selectedItem));
             }
             else if (selectedItem == "Move Shape")
             {
@@ -84,9 +38,31 @@ namespace OOPDraw
             DrawAll();
         }
 
+        private Shape shapeToAdd(int xOrigin, int yOrigin, string selectedItem)
+        {
+            var colour = colourBtn.BackColor;
+            var lineWidth = (float)spinLineWidth.Value;
+            var angle = (float)angleSpin.Value;
+            switch (selectedItem)
+            {
+                case "Draw Circle": return new Circle(xOrigin, yOrigin, colour, lineWidth, 100);
+                case "Draw Isosceles Triangle": return new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, lineWidth, 100);
+                case "Draw Equilateral Triangle": return new EquilateralTriangle(xOrigin, yOrigin, colour, lineWidth, 100);
+                case "Draw Square": return new Square(xOrigin, yOrigin, colour, lineWidth, 90);
+                case "Draw Pentagon": return new Pentagon(xOrigin, yOrigin, colour, lineWidth, 80);
+                case "Draw Hexagon": return new Hexagon(xOrigin, yOrigin, colour, lineWidth, 70);
+                case "Draw Heptagon": return new Heptagon(xOrigin, yOrigin, colour, lineWidth, 60);
+                case "Draw Octagon": return new Octagon(xOrigin, yOrigin, colour, lineWidth, 50);
+                case "Draw Rectangle": return new Rectangle(xOrigin, yOrigin, colour, lineWidth, 100, 50);
+                case "Draw House": return new House(xOrigin, yOrigin, colour, lineWidth, 100, 80);
+                case "Draw Arrow": return new Arrow(xOrigin, yOrigin, colour, lineWidth, 100, angle);
+                default: return new Line(xOrigin, yOrigin, colour, lineWidth, 100, angle);
+            }
+        }
+
         private void AddShape(Shape shape)
         {
-            if (Shapes.Count > 0) 
+            if (Shapes.Count > 0)
             {
                 ActiveShape().Unselect();
             }
@@ -133,7 +109,7 @@ namespace OOPDraw
         {
             var selectedItem = (string)actionCombo.SelectedItem;
             var visible = selectedItem == "Draw Line" || selectedItem == "Draw Arrow";
-            angle.Visible = visible;
+            angleSpin.Visible = visible;
             angleLabel.Visible = visible;
             degreesLabel.Visible = visible;
         }

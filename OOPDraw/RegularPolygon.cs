@@ -1,5 +1,4 @@
 ﻿using Nakov.TurtleGraphics;
-using System;
 using System.Drawing;
 
 namespace OOPDraw
