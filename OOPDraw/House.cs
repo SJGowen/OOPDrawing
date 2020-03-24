@@ -1,8 +1,9 @@
-﻿using System.Drawing;
+﻿using Nakov.TurtleGraphics;
+using System.Drawing;
 
 namespace OOPDraw
 {
-    public class House : Shape
+    public class House : Shape, IColourable
     {
         private float WallWidth { get; set; }
         private float WallHeight { get; set; }
@@ -14,9 +15,9 @@ namespace OOPDraw
         private Rectangle WindowDownstairsRight { get; set; }
         private Rectangle WindowUpstairsRight { get; set; }
 
-        public House(float xOrigin, float yOrigin, Color colour, float penSize, float width, float wallHeight, float orientation) : base(xOrigin, yOrigin, colour, penSize, orientation)
+        public House(float xOrigin, float yOrigin, Color colour, float penSize, float wallWidth, float wallHeight, float orientation) : base(xOrigin, yOrigin, colour, penSize, orientation)
         {
-            WallWidth = width;
+            WallWidth = wallWidth;
             WallHeight = wallHeight;
             Walls = new Rectangle(xOrigin, yOrigin, colour, penSize, WallWidth, WallHeight, orientation);
             Roof = new IsoscelesRightAngledTriangle(xOrigin, yOrigin + WallHeight, colour, penSize, WallWidth, orientation);
@@ -91,6 +92,17 @@ namespace OOPDraw
             WindowUpstairsLeft.Unselect();
             WindowDownstairsRight.Unselect();
             WindowUpstairsRight.Unselect();
+        }
+
+        public override void Colourise(Color colour)
+        {
+            Walls.Colourise(colour);
+            Roof.Colourise(colour);
+            Door.Colourise(colour);
+            WindowDownstairsLeft.Colourise(colour);
+            WindowUpstairsLeft.Colourise(colour);
+            WindowDownstairsRight.Colourise(colour);
+            WindowUpstairsRight.Colourise(colour);
         }
     }
 }

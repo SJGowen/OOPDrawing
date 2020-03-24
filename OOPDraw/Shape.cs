@@ -8,8 +8,8 @@ namespace OOPDraw
     {
         private float XOrigin { get; set; }
         private float YOrigin { get; set; }
-        private float PenSize { get; set; }
         public Color Colour { get; set; }
+        private float PenSize { get; set; }
         public float Orientation { get; set; }
         
         private float OriginalPenSize;
@@ -38,6 +38,7 @@ namespace OOPDraw
         protected void ResetTurtle()
         {
             Turtle.ShowTurtle = false;
+            Turtle.PenColor = Colour;
             Turtle.PenSize = PenSize;
             Turtle.Angle = Orientation;
             Turtle.X = XOrigin;
@@ -69,6 +70,11 @@ namespace OOPDraw
         {
             Orientation = degrees;
             Draw();
+        }
+
+        public virtual void Colourise(Color colour)
+        {
+            Colour = colour;
         }
     }
 }

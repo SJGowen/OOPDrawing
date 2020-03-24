@@ -15,7 +15,6 @@ namespace OOPDraw
         public override void Draw()
         {
             ResetTurtle();
-            Turtle.PenColor = Colour;
             for (int i = 0; i < 72; i++)
             {
                 Turtle.Forward(BaseLenth);

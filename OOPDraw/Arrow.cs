@@ -1,8 +1,9 @@
-﻿using System.Drawing;
+﻿using Nakov.TurtleGraphics;
+using System.Drawing;
 
 namespace OOPDraw
 {
-    public class Arrow : Shape
+    public class Arrow : Shape, IColourable
     {
         private Line Shaft { get; set; }
         private Line LeftTip { get; set; }
@@ -49,5 +50,11 @@ namespace OOPDraw
             RightTip.Unselect();
         }
 
+        public override void Colourise(Color colour)
+        {
+            Shaft.Colourise(colour);
+            LeftTip.Colourise(colour);
+            RightTip.Colourise(colour);
+        }
     }
 }

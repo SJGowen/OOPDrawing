@@ -16,7 +16,6 @@ namespace OOPDraw
         public override void Draw()
         {
             ResetTurtle();
-            Turtle.PenColor = Colour;
             Turtle.Rotate(45);
             Turtle.Forward((float)Math.Sqrt(BaseLength * BaseLength / 2));
             Turtle.Rotate(90);

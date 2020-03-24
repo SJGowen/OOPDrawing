@@ -58,6 +58,7 @@
     <Compile Include="Heptagon.cs" />
     <Compile Include="Hexagon.cs" />
     <Compile Include="House.cs" />
+    <Compile Include="IColourable.cs" />
     <Compile Include="IsoscelesRightAngledTriangle.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Octagon.cs" />

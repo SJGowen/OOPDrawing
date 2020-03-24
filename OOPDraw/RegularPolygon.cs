@@ -18,7 +18,6 @@ namespace OOPDraw
         {
             ResetTurtle();
             Turtle.Rotate(270);
-            Turtle.PenColor = Colour;
             for (int i = 0; i < Sides; i++)
             {
                 Turtle.Rotate((float)360 / Sides);

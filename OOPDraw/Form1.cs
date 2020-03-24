@@ -12,6 +12,18 @@ namespace OOPDraw
             InitializeComponent();
             ColourBtn.BackColor = Turtle.DefaultColor;
             ActionCombo.SelectedIndex = 0;
+            DrawAll();
+        }
+
+        private void MakeGuiMatchObjectSelected()
+        {
+            NextShape.Enabled = Shapes.Count > 0;
+            PriorShape.Enabled = Shapes.Count > 0;
+            if (Shapes.Count > 0)
+            {
+                ColourBtn.BackColor = ActiveShape().Colour;
+                OrientationSpin.Value = (decimal)ActiveShape().Orientation;
+            }
         }
 
         private List<Shape> Shapes = new List<Shape>();
@@ -73,7 +85,7 @@ namespace OOPDraw
                     return new House(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 10 * 8, 0);
                 case "Draw Arrow":
                     return new Arrow(xOrigin, yOrigin, colour, penSize, sideLength, orientation);
-                default:
+                default: // "Draw Line":
                     return new Line(xOrigin, yOrigin, colour, penSize, sideLength, orientation);
             }
         }
@@ -89,7 +101,7 @@ namespace OOPDraw
         public void DrawAll()
         {
             Turtle.Dispose();
-            OrientationSpin.Value = Shapes.Count > 0 ? (decimal)ActiveShape().Orientation : OrientationSpin.Value;
+            MakeGuiMatchObjectSelected();
             foreach (var shape in Shapes)
             {
                 shape.Draw();
@@ -159,7 +171,7 @@ namespace OOPDraw
                 ColourBtn.BackColor = colorDialog1.Color;
                 if (Shapes.Count > 0)
                 {
-                    ActiveShape().Colour = colorDialog1.Color;
+                    ActiveShape().Colourise(colorDialog1.Color);
                     DrawAll();
                 }
             }
@@ -167,8 +179,11 @@ namespace OOPDraw
 
         private void OrientationSpin_ValueChanged(object sender, EventArgs e)
         {
-            if (Shapes.Count > 0) ActiveShape().Rotate((float)OrientationSpin.Value);
-            DrawAll();
+            if (Shapes.Count > 0) 
+            {
+                ActiveShape().Rotate((float)OrientationSpin.Value);
+                DrawAll();
+            }
         }
     }
 }

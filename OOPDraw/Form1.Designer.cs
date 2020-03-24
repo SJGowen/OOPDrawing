@@ -30,7 +30,7 @@
         {
             this.ActionCombo = new System.Windows.Forms.ComboBox();
             this.NextShape = new System.Windows.Forms.Button();
-            this.PreviousShape = new System.Windows.Forms.Button();
+            this.PriorShape = new System.Windows.Forms.Button();
             this.OrientationSpin = new System.Windows.Forms.NumericUpDown();
             this.OrientationLabel = new System.Windows.Forms.Label();
             this.DegreesLabel = new System.Windows.Forms.Label();
@@ -82,15 +82,15 @@
             this.NextShape.UseVisualStyleBackColor = true;
             this.NextShape.Click += new System.EventHandler(this.NextShape_Click);
             // 
-            // PreviousShape
+            // PriorShape
             // 
-            this.PreviousShape.Location = new System.Drawing.Point(189, 33);
-            this.PreviousShape.Name = "PreviousShape";
-            this.PreviousShape.Size = new System.Drawing.Size(75, 23);
-            this.PreviousShape.TabIndex = 2;
-            this.PreviousShape.Text = "Prev";
-            this.PreviousShape.UseVisualStyleBackColor = true;
-            this.PreviousShape.Click += new System.EventHandler(this.PreviousShape_Click);
+            this.PriorShape.Location = new System.Drawing.Point(189, 33);
+            this.PriorShape.Name = "PriorShape";
+            this.PriorShape.Size = new System.Drawing.Size(75, 23);
+            this.PriorShape.TabIndex = 2;
+            this.PriorShape.Text = "Prior";
+            this.PriorShape.UseVisualStyleBackColor = true;
+            this.PriorShape.Click += new System.EventHandler(this.PreviousShape_Click);
             // 
             // OrientationSpin
             // 
@@ -249,7 +249,7 @@
             this.Controls.Add(this.DegreesLabel);
             this.Controls.Add(this.OrientationLabel);
             this.Controls.Add(this.OrientationSpin);
-            this.Controls.Add(this.PreviousShape);
+            this.Controls.Add(this.PriorShape);
             this.Controls.Add(this.NextShape);
             this.Controls.Add(this.ActionCombo);
             this.Name = "Form1";
@@ -267,7 +267,7 @@
 
         private System.Windows.Forms.ComboBox ActionCombo;
         private System.Windows.Forms.Button NextShape;
-        private System.Windows.Forms.Button PreviousShape;
+        private System.Windows.Forms.Button PriorShape;
         private System.Windows.Forms.NumericUpDown OrientationSpin;
         private System.Windows.Forms.Label OrientationLabel;
         private System.Windows.Forms.Label DegreesLabel;
