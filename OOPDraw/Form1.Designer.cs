@@ -43,6 +43,7 @@
             this.PenSizeLabel = new System.Windows.Forms.Label();
             this.SideLengthLabel = new System.Windows.Forms.Label();
             this.SideLengthSpin = new System.Windows.Forms.NumericUpDown();
+            this.Delete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.OrientationSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SideLengthSpin)).BeginInit();
@@ -233,11 +234,22 @@
             0,
             0});
             // 
+            // Delete
+            // 
+            this.Delete.Location = new System.Drawing.Point(189, 62);
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(75, 23);
+            this.Delete.TabIndex = 14;
+            this.Delete.Text = "Delete";
+            this.Delete.UseVisualStyleBackColor = true;
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 636);
+            this.Controls.Add(this.Delete);
             this.Controls.Add(this.SideLengthLabel);
             this.Controls.Add(this.SideLengthSpin);
             this.Controls.Add(this.PenSizeLabel);
@@ -280,6 +292,7 @@
         private System.Windows.Forms.Label PenSizeLabel;
         private System.Windows.Forms.Label SideLengthLabel;
         private System.Windows.Forms.NumericUpDown SideLengthSpin;
+        private System.Windows.Forms.Button Delete;
     }
 }
 

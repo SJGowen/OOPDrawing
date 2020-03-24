@@ -96,6 +96,7 @@ namespace OOPDraw
 
         public override void Colourise(Color colour)
         {
+            base.Colour = colour;
             Walls.Colourise(colour);
             Roof.Colourise(colour);
             Door.Colourise(colour);

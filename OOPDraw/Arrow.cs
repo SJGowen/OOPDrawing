@@ -52,6 +52,7 @@ namespace OOPDraw
 
         public override void Colourise(Color colour)
         {
+            base.Colour = colour;
             Shaft.Colourise(colour);
             LeftTip.Colourise(colour);
             RightTip.Colourise(colour);

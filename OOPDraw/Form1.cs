@@ -15,18 +15,7 @@ namespace OOPDraw
             DrawAll();
         }
 
-        private void MakeGuiMatchObjectSelected()
-        {
-            NextShape.Enabled = Shapes.Count > 0;
-            PriorShape.Enabled = Shapes.Count > 0;
-            if (Shapes.Count > 0)
-            {
-                ColourBtn.BackColor = ActiveShape().Colour;
-                OrientationSpin.Value = (decimal)ActiveShape().Orientation;
-            }
-        }
-
-        private List<Shape> Shapes = new List<Shape>();
+        private readonly List<Shape> Shapes = new List<Shape>();
 
         private void Form1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -101,10 +90,22 @@ namespace OOPDraw
         public void DrawAll()
         {
             Turtle.Dispose();
-            MakeGuiMatchObjectSelected();
+            UpdateGuiToMatchObjectSelected();
             foreach (var shape in Shapes)
             {
                 shape.Draw();
+            }
+        }
+
+        private void UpdateGuiToMatchObjectSelected()
+        {
+            NextShape.Enabled = Shapes.Count > 0;
+            PriorShape.Enabled = Shapes.Count > 0;
+            Delete.Enabled = Shapes.Count > 0;
+            if (Shapes.Count > 0)
+            {
+                ColourBtn.BackColor = ActiveShape().Colour;
+                OrientationSpin.Value = (decimal)ActiveShape().Orientation;
             }
         }
 
@@ -182,6 +183,18 @@ namespace OOPDraw
             if (Shapes.Count > 0) 
             {
                 ActiveShape().Rotate((float)OrientationSpin.Value);
+                DrawAll();
+            }
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Are you sure that you wish to delete the Active Object", "Delete Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dr == DialogResult.Yes)
+            {
+                Shapes.Remove(ActiveShape());
+                if (activeShapeNumber > Shapes.Count - 1) activeShapeNumber = Shapes.Count - 1;
+                if (Shapes.Count > 0) ActiveShape().Select();
                 DrawAll();
             }
         }
