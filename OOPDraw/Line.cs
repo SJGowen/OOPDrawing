@@ -8,7 +8,7 @@ namespace OOPDraw
         protected float Length { get; set; }
         protected float Angle { get; set; }
 
-        public Line(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize)
+        public Line(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize, angle)
         {
             Length = length;
             Angle = angle;
@@ -18,7 +18,6 @@ namespace OOPDraw
         {
             ResetTurtle();
             Turtle.PenColor = Colour;
-            Turtle.Rotate(Angle);
             Turtle.Forward(Length);
         }
 

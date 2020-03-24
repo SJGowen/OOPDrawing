@@ -7,7 +7,7 @@ namespace OOPDraw
     {
         private float BaseLenth { get; set; }
 
-        public Circle(float xOrigin, float yOrigin, Color colour, float penSize, float baseLength) : base(xOrigin, yOrigin, colour, penSize)
+        public Circle(float xOrigin, float yOrigin, Color colour, float penSize, float baseLength, float orientation) : base(xOrigin, yOrigin, colour, penSize, orientation)
         {
             BaseLenth = baseLength;
         }

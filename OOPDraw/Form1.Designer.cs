@@ -31,8 +31,8 @@
             this.ActionCombo = new System.Windows.Forms.ComboBox();
             this.NextShape = new System.Windows.Forms.Button();
             this.PreviousShape = new System.Windows.Forms.Button();
-            this.AngleSpin = new System.Windows.Forms.NumericUpDown();
-            this.AngleLabel = new System.Windows.Forms.Label();
+            this.OrientationSpin = new System.Windows.Forms.NumericUpDown();
+            this.OrientationLabel = new System.Windows.Forms.Label();
             this.DegreesLabel = new System.Windows.Forms.Label();
             this.ActionLabel = new System.Windows.Forms.Label();
             this.SelectionLabel = new System.Windows.Forms.Label();
@@ -43,7 +43,7 @@
             this.PenSizeLabel = new System.Windows.Forms.Label();
             this.SideLengthLabel = new System.Windows.Forms.Label();
             this.SideLengthSpin = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrientationSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SideLengthSpin)).BeginInit();
             this.SuspendLayout();
@@ -70,7 +70,7 @@
             this.ActionCombo.Name = "ActionCombo";
             this.ActionCombo.Size = new System.Drawing.Size(156, 21);
             this.ActionCombo.TabIndex = 0;
-            this.ActionCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.ActionCombo.SelectedIndexChanged += new System.EventHandler(this.ComboBox1_SelectedIndexChanged);
             // 
             // NextShape
             // 
@@ -92,43 +92,41 @@
             this.PreviousShape.UseVisualStyleBackColor = true;
             this.PreviousShape.Click += new System.EventHandler(this.PreviousShape_Click);
             // 
-            // AngleSpin
+            // OrientationSpin
             // 
-            this.AngleSpin.Increment = new decimal(new int[] {
+            this.OrientationSpin.Increment = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.AngleSpin.Location = new System.Drawing.Point(502, 7);
-            this.AngleSpin.Maximum = new decimal(new int[] {
+            this.OrientationSpin.Location = new System.Drawing.Point(108, 117);
+            this.OrientationSpin.Maximum = new decimal(new int[] {
             359,
             0,
             0,
             0});
-            this.AngleSpin.Name = "AngleSpin";
-            this.AngleSpin.Size = new System.Drawing.Size(41, 20);
-            this.AngleSpin.TabIndex = 3;
-            this.AngleSpin.Visible = false;
+            this.OrientationSpin.Name = "OrientationSpin";
+            this.OrientationSpin.Size = new System.Drawing.Size(41, 20);
+            this.OrientationSpin.TabIndex = 3;
+            this.OrientationSpin.ValueChanged += new System.EventHandler(this.OrientationSpin_ValueChanged);
             // 
-            // AngleLabel
+            // OrientationLabel
             // 
-            this.AngleLabel.AutoSize = true;
-            this.AngleLabel.Location = new System.Drawing.Point(270, 9);
-            this.AngleLabel.Name = "AngleLabel";
-            this.AngleLabel.Size = new System.Drawing.Size(226, 13);
-            this.AngleLabel.TabIndex = 4;
-            this.AngleLabel.Text = "The Angle that Lines and Arrows are drawn at:";
-            this.AngleLabel.Visible = false;
+            this.OrientationLabel.AutoSize = true;
+            this.OrientationLabel.Location = new System.Drawing.Point(41, 119);
+            this.OrientationLabel.Name = "OrientationLabel";
+            this.OrientationLabel.Size = new System.Drawing.Size(61, 13);
+            this.OrientationLabel.TabIndex = 4;
+            this.OrientationLabel.Text = "Orientation:";
             // 
             // DegreesLabel
             // 
             this.DegreesLabel.AutoSize = true;
-            this.DegreesLabel.Location = new System.Drawing.Point(549, 9);
+            this.DegreesLabel.Location = new System.Drawing.Point(155, 119);
             this.DegreesLabel.Name = "DegreesLabel";
             this.DegreesLabel.Size = new System.Drawing.Size(45, 13);
             this.DegreesLabel.TabIndex = 5;
             this.DegreesLabel.Text = "degrees";
-            this.DegreesLabel.Visible = false;
             // 
             // ActionLabel
             // 
@@ -239,7 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1184, 636);
             this.Controls.Add(this.SideLengthLabel);
             this.Controls.Add(this.SideLengthSpin);
             this.Controls.Add(this.PenSizeLabel);
@@ -249,15 +247,15 @@
             this.Controls.Add(this.SelectionLabel);
             this.Controls.Add(this.ActionLabel);
             this.Controls.Add(this.DegreesLabel);
-            this.Controls.Add(this.AngleLabel);
-            this.Controls.Add(this.AngleSpin);
+            this.Controls.Add(this.OrientationLabel);
+            this.Controls.Add(this.OrientationSpin);
             this.Controls.Add(this.PreviousShape);
             this.Controls.Add(this.NextShape);
             this.Controls.Add(this.ActionCombo);
             this.Name = "Form1";
             this.Text = "Drawing App";
             this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-            ((System.ComponentModel.ISupportInitialize)(this.AngleSpin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.OrientationSpin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSizeSpin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SideLengthSpin)).EndInit();
             this.ResumeLayout(false);
@@ -270,8 +268,8 @@
         private System.Windows.Forms.ComboBox ActionCombo;
         private System.Windows.Forms.Button NextShape;
         private System.Windows.Forms.Button PreviousShape;
-        private System.Windows.Forms.NumericUpDown AngleSpin;
-        private System.Windows.Forms.Label AngleLabel;
+        private System.Windows.Forms.NumericUpDown OrientationSpin;
+        private System.Windows.Forms.Label OrientationLabel;
         private System.Windows.Forms.Label DegreesLabel;
         private System.Windows.Forms.Label ActionLabel;
         private System.Windows.Forms.Label SelectionLabel;

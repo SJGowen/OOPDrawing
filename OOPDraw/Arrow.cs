@@ -8,7 +8,7 @@ namespace OOPDraw
         private Line LeftTip { get; set; }
         private Line RightTip { get; set; }
 
-        public Arrow(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize)
+        public Arrow(float xOrigin, float yOrigin, Color colour, float penSize, float length, float angle) : base(xOrigin, yOrigin, colour, penSize, angle)
         {
             Shaft = new Line(xOrigin, yOrigin, colour, penSize, length, angle);
             LeftTip = new Line(xOrigin, yOrigin, colour, penSize, 20, angle - 30);

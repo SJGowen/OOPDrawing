@@ -10,16 +10,18 @@ namespace OOPDraw
         private float YOrigin { get; set; }
         private float PenSize { get; set; }
         public Color Colour { get; set; }
+        public float Orientation { get; set; }
         
         private float OriginalPenSize;
 
 
-        public Shape(float xOrigin, float yOrigin, Color colour, float penSize)
+        public Shape(float xOrigin, float yOrigin, Color colour, float penSize, float orientation)
         {
             XOrigin = xOrigin;
             YOrigin = yOrigin;
             Colour = colour;
             PenSize = penSize;
+            Orientation = orientation;
         }
 
         public virtual void Select()
@@ -37,7 +39,7 @@ namespace OOPDraw
         {
             Turtle.ShowTurtle = false;
             Turtle.PenSize = PenSize;
-            Turtle.Angle = 0;
+            Turtle.Angle = Orientation;
             Turtle.X = XOrigin;
             Turtle.Y = YOrigin;
         }
@@ -61,6 +63,12 @@ namespace OOPDraw
         public void ResizeAbsolute(float xUnits, float yUnits)
         {
             Resize(Math.Abs(xUnits - XOrigin), Math.Abs(yUnits - YOrigin));
+        }
+
+        public void Rotate(float degrees)
+        {
+            Orientation = degrees;
+            Draw();
         }
     }
 }
