@@ -12,9 +12,9 @@ namespace OOPDraw
             BaseLenth = baseLength;
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            ResetTurtle();
+            base.PrepareForDrawing(xMove, yMove);
             for (int i = 0; i < 72; i++)
             {
                 Turtle.Forward(BaseLenth);

@@ -6,14 +6,13 @@ namespace OOPDraw
 {
     public abstract class Shape
     {
-        private float XOrigin { get; set; }
-        private float YOrigin { get; set; }
+        protected float XOrigin { get; set; }
+        protected float YOrigin { get; set; }
         public Color Colour { get; set; }
-        private float PenSize { get; set; }
+        protected float PenSize { get; set; }
         public float Orientation { get; set; }
-        
-        private float OriginalPenSize;
 
+        private float OriginalPenSize;
 
         public Shape(float xOrigin, float yOrigin, Color colour, float penSize, float orientation)
         {
@@ -35,7 +34,7 @@ namespace OOPDraw
             PenSize = OriginalPenSize;
         }
 
-        protected void ResetTurtle()
+        private void ResetTurtle()
         {
             Turtle.ShowTurtle = false;
             Turtle.PenColor = Colour;
@@ -45,7 +44,18 @@ namespace OOPDraw
             Turtle.Y = YOrigin;
         }
 
-        public abstract void Draw();
+        protected virtual void PrepareForDrawing(float xMove, float yMove)
+        {
+            ResetTurtle();
+            Turtle.PenUp();
+            Turtle.Rotate(90);
+            Turtle.Forward(xMove);
+            Turtle.Rotate(-90);
+            Turtle.Forward(yMove);
+            Turtle.PenDown();
+        }
+
+        public abstract void Draw(float xMove = 0, float yMove = 0);
 
         public virtual void MoveTo(float xOrigin, float yOrigin)
         {
@@ -53,21 +63,16 @@ namespace OOPDraw
             YOrigin = yOrigin;
         }
 
-        public virtual void MoveBy(float xUnits, float yUnits)
-        {
-            XOrigin += xUnits;
-            YOrigin += yUnits;
-        }
-
         public abstract void Resize(float xUnits, float yUnits);
 
-        public void ResizeAbsolute(float xUnits, float yUnits)
+        public virtual void ResizeAbsolute(float xUnits, float yUnits)
         {
             Resize(Math.Abs(xUnits - XOrigin), Math.Abs(yUnits - YOrigin));
         }
 
-        public void Rotate(float degrees)
+        public virtual void Rotate(float degrees)
         {
+            //Debug.WriteLine($"Shape Rotate called with argument degrees = {degrees}");
             Orientation = degrees;
             Draw();
         }

@@ -14,9 +14,9 @@ namespace OOPDraw
             Angle = angle;
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            ResetTurtle();
+            base.PrepareForDrawing(xMove, yMove);
             Turtle.Forward(Length);
         }
 

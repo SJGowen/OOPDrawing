@@ -14,9 +14,9 @@ namespace OOPDraw
             Sides = sides;
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            ResetTurtle();
+            base.PrepareForDrawing(xMove, yMove);
             Turtle.Rotate(270);
             for (int i = 0; i < Sides; i++)
             {

@@ -71,7 +71,7 @@ namespace OOPDraw
                 case "Draw Rectangle":
                     return new Rectangle(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 2, orientation);
                 case "Draw House":
-                    return new House(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 10 * 8, 0);
+                    return new House(xOrigin, yOrigin, colour, penSize, sideLength, sideLength / 10 * 8, orientation);
                 case "Draw Arrow":
                     return new Arrow(xOrigin, yOrigin, colour, penSize, sideLength, orientation);
                 default: // "Draw Line":
@@ -136,12 +136,7 @@ namespace OOPDraw
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = (string)ActionCombo.SelectedItem;
-            var enabled = selectedItem != "Draw House" && selectedItem != "Move Shape" && selectedItem != "Resize Shape";
-            OrientationSpin.Enabled = enabled;
-            OrientationLabel.Enabled = enabled;
-            DegreesLabel.Enabled = enabled;
-            SideLengthSpin.Value = getSideLengthValue(selectedItem);
+            SideLengthSpin.Value = getSideLengthValue((string)ActionCombo.SelectedItem);
         }
 
         private decimal getSideLengthValue(string selectedItem)

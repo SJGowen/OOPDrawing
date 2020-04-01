@@ -1,4 +1,5 @@
 ﻿using Nakov.TurtleGraphics;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace OOPDraw
@@ -16,11 +17,11 @@ namespace OOPDraw
             RightTip = new Line(xOrigin, yOrigin, colour, penSize, 20, angle + 30);
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            Shaft.Draw();
-            LeftTip.Draw();
-            RightTip.Draw();
+            Shaft.Draw(xMove, yMove);
+            LeftTip.Draw(xMove, yMove);
+            RightTip.Draw(xMove, yMove);
         }
 
         public override void MoveTo(float xOrigin, float yOrigin)
@@ -34,6 +35,7 @@ namespace OOPDraw
         public override void Resize(float xUnits, float yUnits)
         {
             Shaft.Resize(xUnits, yUnits);
+            Select();
         }
 
         public override void Select()
@@ -56,6 +58,15 @@ namespace OOPDraw
             Shaft.Colourise(colour);
             LeftTip.Colourise(colour);
             RightTip.Colourise(colour);
+        }
+
+        public override void Rotate(float degrees)
+        {
+            //Debug.WriteLine($"Arrow Rotate called with argument degrees = {degrees}");
+            base.Rotate(degrees);
+            Shaft.Rotate(degrees);
+            LeftTip = new Line(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, 20, base.Orientation - 30);
+            RightTip = new Line(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, 20, base.Orientation + 30);
         }
     }
 }

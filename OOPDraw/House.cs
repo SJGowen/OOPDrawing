@@ -1,4 +1,6 @@
 ﻿using Nakov.TurtleGraphics;
+using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace OOPDraw
@@ -7,6 +9,10 @@ namespace OOPDraw
     {
         private float WallWidth { get; set; }
         private float WallHeight { get; set; }
+        private float DoorWidth { get => WallWidth / 5; }
+        private float DoorHeight { get => WallHeight / 2 - WallHeight / 10; }
+        private float WindowWidth { get => WallWidth / 4; }
+        private float WindowHeight { get => WallHeight / 4; }
         private Rectangle Walls { get; set; }
         private IsoscelesRightAngledTriangle Roof { get; set; }
         private Rectangle Door { get; set; }
@@ -17,59 +23,55 @@ namespace OOPDraw
 
         public House(float xOrigin, float yOrigin, Color colour, float penSize, float wallWidth, float wallHeight, float orientation) : base(xOrigin, yOrigin, colour, penSize, orientation)
         {
+            //Debug.WriteLine($"House Constructor called with arguments {xOrigin}, {yOrigin}, {colour}, {penSize}, {wallWidth}, {wallHeight}, {orientation}");
             WallWidth = wallWidth;
             WallHeight = wallHeight;
             Walls = new Rectangle(xOrigin, yOrigin, colour, penSize, WallWidth, WallHeight, orientation);
-            Roof = new IsoscelesRightAngledTriangle(xOrigin, yOrigin + WallHeight, colour, penSize, WallWidth, orientation);
-            Door = new Rectangle(xOrigin + WallWidth / 2 - WallWidth / 10, yOrigin, colour, penSize, WallWidth / 5, WallHeight / 2 - WallHeight / 8, orientation);
-            WindowDownstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8, colour, penSize, WallWidth / 4, WallHeight / 4, orientation);
-            WindowUpstairsLeft = new Rectangle(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8 * 5, colour, penSize, WallWidth / 4, WallHeight / 4, orientation);
-            WindowDownstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8, colour, penSize, WallWidth / 4, WallHeight / 4, orientation);
-            WindowUpstairsRight = new Rectangle(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8 * 5, colour, penSize, WallWidth / 4, WallHeight / 4, orientation);
+            Roof = new IsoscelesRightAngledTriangle(xOrigin, yOrigin, colour, penSize, WallWidth, orientation);
+            Door = new Rectangle(xOrigin, yOrigin, colour, penSize, DoorWidth, DoorHeight, orientation);
+            WindowDownstairsLeft = new Rectangle(xOrigin, yOrigin, colour, penSize, WindowWidth, WindowHeight, orientation);
+            WindowUpstairsLeft = new Rectangle(xOrigin, yOrigin, colour, penSize, WindowWidth, WindowHeight, orientation);
+            WindowDownstairsRight = new Rectangle(xOrigin, yOrigin, colour, penSize, WindowWidth, WindowHeight, orientation);
+            WindowUpstairsRight = new Rectangle(xOrigin, yOrigin, colour, penSize, WindowWidth, WindowHeight, orientation);
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            Walls.Draw();
-            Roof.Draw();
-            Door.Draw();
-            WindowDownstairsLeft.Draw();
-            WindowUpstairsLeft.Draw();
-            WindowDownstairsRight.Draw();
-            WindowUpstairsRight.Draw();
+            //Debug.WriteLine($"House Draw called with arguments {xMove}, {yMove}");
+            Walls.Draw(xMove, yMove);
+            Roof.Draw(0, WallHeight);
+            Door.Draw(WallWidth / 2 - WallWidth / 10, 0);
+            WindowDownstairsLeft.Draw(WallWidth / 12, WallHeight / 8);
+            WindowUpstairsLeft.Draw(WallWidth / 12, WallHeight / 8 * 5);
+            WindowDownstairsRight.Draw(WallWidth / 12 * 8, WallHeight / 8);
+            WindowUpstairsRight.Draw(WallWidth / 12 * 8, WallHeight / 8 * 5);
         }
 
         public override void MoveTo(float xOrigin, float yOrigin)
         {
+            //Debug.WriteLine($"House MoveTo called with arguments {xOrigin}, {yOrigin}");
             base.MoveTo(xOrigin, yOrigin);
             Walls.MoveTo(xOrigin, yOrigin);
-            Roof.MoveTo(xOrigin, yOrigin + WallHeight);
-            Door.MoveTo(xOrigin + WallWidth / 2 - WallWidth / 10, yOrigin);
-            WindowDownstairsLeft.MoveTo(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8);
-            WindowUpstairsLeft.MoveTo(xOrigin + WallWidth / 12, yOrigin + WallHeight / 8 * 5);
-            WindowDownstairsRight.MoveTo(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8);
-            WindowUpstairsRight.MoveTo(xOrigin + WallWidth / 12 * 8, yOrigin + WallHeight / 8 * 5);
+            Roof.MoveTo(xOrigin, yOrigin);
+            Door.MoveTo(xOrigin, yOrigin);
+            WindowDownstairsLeft.MoveTo(xOrigin, yOrigin);
+            WindowUpstairsLeft.MoveTo(xOrigin, yOrigin);
+            WindowDownstairsRight.MoveTo(xOrigin, yOrigin);
+            WindowUpstairsRight.MoveTo(xOrigin, yOrigin);
         }
 
         public override void Resize(float xUnits, float yUnits)
         {
-            var xDiff = xUnits - WallWidth;
             WallWidth = xUnits;
-            var yDiff = yUnits - WallHeight;
             WallHeight = yUnits;
             Walls.Resize(WallWidth, WallHeight);
-            Roof.Resize(WallWidth, 0);
-            Roof.MoveBy(0, yDiff);
-            Door.Resize(WallWidth / 5, WallHeight / 2 - WallHeight / 8);
-            Door.MoveBy(xDiff / 2 - xDiff / 10, 0);
-            WindowDownstairsLeft.Resize(WallWidth / 4, WallHeight / 4);
-            WindowDownstairsLeft.MoveBy(xDiff / 12, yDiff / 8);
-            WindowUpstairsLeft.Resize(WallWidth / 4, WallHeight / 4);
-            WindowUpstairsLeft.MoveBy(xDiff / 12, yDiff / 8 * 5);
-            WindowDownstairsRight.Resize(WallWidth / 4, WallHeight / 4);
-            WindowDownstairsRight.MoveBy(xDiff / 12 * 8, yDiff / 8);
-            WindowUpstairsRight.Resize(WallWidth / 4, WallHeight / 4);
-            WindowUpstairsRight.MoveBy(xDiff / 12 * 8, yDiff / 8 * 5);
+            Roof = new IsoscelesRightAngledTriangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, WallWidth, base.Orientation);
+            Door = new Rectangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, DoorWidth, DoorHeight, base.Orientation);
+            WindowDownstairsLeft = new Rectangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, WindowWidth, WindowHeight, base.Orientation);
+            WindowUpstairsLeft = new Rectangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, WindowWidth, WindowHeight, base.Orientation);
+            WindowDownstairsRight = new Rectangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, WindowWidth, WindowHeight, base.Orientation);
+            WindowUpstairsRight = new Rectangle(base.XOrigin, base.YOrigin, base.Colour, base.PenSize, WindowWidth, WindowHeight, base.Orientation);
+            Select();
         }
 
         public override void Select()
@@ -104,6 +106,18 @@ namespace OOPDraw
             WindowUpstairsLeft.Colourise(colour);
             WindowDownstairsRight.Colourise(colour);
             WindowUpstairsRight.Colourise(colour);
+        }
+
+        public override void Rotate(float degrees)
+        {
+            base.Rotate(degrees);
+            Walls.Rotate(degrees);
+            Roof.Rotate(degrees);
+            Door.Rotate(degrees);
+            WindowDownstairsLeft.Rotate(degrees);
+            WindowUpstairsLeft.Rotate(degrees);
+            WindowDownstairsRight.Rotate(degrees);
+            WindowUpstairsRight.Rotate(degrees);
         }
     }
 }

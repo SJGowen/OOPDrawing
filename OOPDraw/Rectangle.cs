@@ -10,13 +10,14 @@ namespace OOPDraw
 
         public Rectangle(float xOrigin, float yOrigin, Color colour, float penSize, float width, float height, float orientation) : base(xOrigin, yOrigin, colour, penSize, orientation)
         {
+            //Debug.WriteLine($"Rectangle create called with arguments {xOrigin}, {yOrigin}, {colour}, {penSize}, {width}, {height}, {orientation}");
             Width = width;
             Height = height;
         }
- 
-        public override void Draw()
+
+        public override void Draw(float xMove, float yMove)
         {
-            ResetTurtle();
+            base.PrepareForDrawing(xMove, yMove);
             for (int i = 0; i < 2; i++)
             {
                 Turtle.Forward(Height);

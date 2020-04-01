@@ -1,5 +1,4 @@
-﻿using Nakov.TurtleGraphics;
-using System;
+﻿using Nakov.TurtleGraphics;using System;
 using System.Drawing;
 
 namespace OOPDraw
@@ -13,9 +12,9 @@ namespace OOPDraw
             BaseLength = baseLength;
         }
 
-        public override void Draw()
+        public override void Draw(float xMove, float yMove)
         {
-            ResetTurtle();
+            base.PrepareForDrawing(xMove, yMove);
             Turtle.Rotate(45);
             Turtle.Forward((float)Math.Sqrt(BaseLength * BaseLength / 2));
             Turtle.Rotate(90);
