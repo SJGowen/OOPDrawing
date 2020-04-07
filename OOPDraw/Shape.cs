@@ -1,18 +1,19 @@
 ﻿using Nakov.TurtleGraphics;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 
 namespace OOPDraw
 {
     public abstract class Shape
     {
-        protected float XOrigin { get; set; }
-        protected float YOrigin { get; set; }
-        public Color Colour { get; set; }
+        public float XOrigin { get; set; }
+        public float YOrigin { get; set; }
         protected float PenSize { get; set; }
+        public Color Colour { get; set; }
         public float Orientation { get; set; }
+        public bool IsSelected { get; protected set; }
 
-        private float OriginalPenSize;
 
         public Shape(float xOrigin, float yOrigin, Color colour, float penSize, float orientation)
         {
@@ -21,24 +22,17 @@ namespace OOPDraw
             Colour = colour;
             PenSize = penSize;
             Orientation = orientation;
+            IsSelected = true;
         }
 
-        public virtual void Select()
-        {
-            OriginalPenSize = PenSize;
-            PenSize = 4;
-        }
+        public abstract void Select();
 
-        public virtual void Unselect()
-        {
-            PenSize = OriginalPenSize;
-        }
+        public abstract void Unselect();
 
         private void ResetTurtle()
         {
             Turtle.ShowTurtle = false;
             Turtle.PenColor = Colour;
-            Turtle.PenSize = PenSize;
             Turtle.Angle = Orientation;
             Turtle.X = XOrigin;
             Turtle.Y = YOrigin;
@@ -47,6 +41,8 @@ namespace OOPDraw
         protected virtual void PrepareForDrawing(float xMove, float yMove)
         {
             ResetTurtle();
+            Debug.WriteLine($"Drawing called on Shape {this.GetType().Name} - IsSelected {IsSelected} - Called From {new System.Diagnostics.StackTrace(true)}.");
+            Turtle.PenSize = IsSelected ? 4 : 2;
             Turtle.PenUp();
             Turtle.Rotate(90);
             Turtle.Forward(xMove);
@@ -59,27 +55,30 @@ namespace OOPDraw
 
         public virtual void MoveTo(float xOrigin, float yOrigin)
         {
-            XOrigin = xOrigin;
-            YOrigin = yOrigin;
+            if (IsSelected)
+            {
+                XOrigin = xOrigin;
+                YOrigin = yOrigin;
+            }
         }
 
         public abstract void Resize(float xUnits, float yUnits);
 
         public virtual void ResizeAbsolute(float xUnits, float yUnits)
         {
-            Resize(Math.Abs(xUnits - XOrigin), Math.Abs(yUnits - YOrigin));
+            if (IsSelected) Resize(Math.Abs(xUnits - XOrigin), Math.Abs(yUnits - YOrigin));
         }
 
         public virtual void Rotate(float degrees)
         {
-            //Debug.WriteLine($"Shape Rotate called with argument degrees = {degrees}");
-            Orientation = degrees;
+            //Debug.WriteLine($"Shape Rotate called on shape that has selected = {IsSelected} with argument degrees = {degrees}");
+            if (IsSelected) Orientation = degrees;
             Draw();
         }
 
         public virtual void Colourise(Color colour)
         {
-            Colour = colour;
+            if (IsSelected) Colour = colour;
         }
     }
 }

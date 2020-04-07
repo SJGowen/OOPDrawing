@@ -1,7 +1,4 @@
-﻿using Nakov.TurtleGraphics;
-using System;
-using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace OOPDraw
 {
@@ -50,7 +47,6 @@ namespace OOPDraw
         public override void MoveTo(float xOrigin, float yOrigin)
         {
             //Debug.WriteLine($"House MoveTo called with arguments {xOrigin}, {yOrigin}");
-            base.MoveTo(xOrigin, yOrigin);
             Walls.MoveTo(xOrigin, yOrigin);
             Roof.MoveTo(xOrigin, yOrigin);
             Door.MoveTo(xOrigin, yOrigin);
@@ -58,6 +54,7 @@ namespace OOPDraw
             WindowUpstairsLeft.MoveTo(xOrigin, yOrigin);
             WindowDownstairsRight.MoveTo(xOrigin, yOrigin);
             WindowUpstairsRight.MoveTo(xOrigin, yOrigin);
+            base.MoveTo(xOrigin, yOrigin);
         }
 
         public override void Resize(float xUnits, float yUnits)
@@ -83,6 +80,7 @@ namespace OOPDraw
             WindowUpstairsLeft.Select();
             WindowDownstairsRight.Select();
             WindowUpstairsRight.Select();
+            base.IsSelected = true;
         }
 
         public override void Unselect()
@@ -94,11 +92,11 @@ namespace OOPDraw
             WindowUpstairsLeft.Unselect();
             WindowDownstairsRight.Unselect();
             WindowUpstairsRight.Unselect();
+            base.IsSelected = false;
         }
 
         public override void Colourise(Color colour)
         {
-            base.Colour = colour;
             Walls.Colourise(colour);
             Roof.Colourise(colour);
             Door.Colourise(colour);
@@ -106,11 +104,11 @@ namespace OOPDraw
             WindowUpstairsLeft.Colourise(colour);
             WindowDownstairsRight.Colourise(colour);
             WindowUpstairsRight.Colourise(colour);
+            base.Colour = colour;
         }
 
         public override void Rotate(float degrees)
         {
-            base.Rotate(degrees);
             Walls.Rotate(degrees);
             Roof.Rotate(degrees);
             Door.Rotate(degrees);
@@ -118,6 +116,7 @@ namespace OOPDraw
             WindowUpstairsLeft.Rotate(degrees);
             WindowDownstairsRight.Rotate(degrees);
             WindowUpstairsRight.Rotate(degrees);
+            base.Rotate(degrees);
         }
     }
 }

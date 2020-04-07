@@ -27,5 +27,15 @@ namespace OOPDraw
         {
             BaseLength = xUnits;
         }
+
+        public override void Select()
+        {
+            base.IsSelected = true;
+        }
+
+        public override void Unselect()
+        {
+            base.IsSelected = false;
+        }
     }
 }

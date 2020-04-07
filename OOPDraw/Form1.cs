@@ -1,32 +1,33 @@
 ﻿using Nakov.TurtleGraphics;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace OOPDraw
 {
     public partial class Form1 : Form
     {
+        public bool MousePressed { get; set; }
+        public bool MouseMoved { get; set; }
+        public Point MouseDragStart { get; set; }
+        public Point MouseDragStop { get; set; }
+
         public Form1()
         {
             InitializeComponent();
             ColourBtn.BackColor = Turtle.DefaultColor;
             ActionCombo.SelectedIndex = 0;
-            DrawAll();
         }
 
         private readonly List<Shape> Shapes = new List<Shape>();
 
-        private void Form1_MouseClick(object sender, MouseEventArgs e)
-        {
-            DrawShape(e);
-        }
-
         private void DrawShape(MouseEventArgs e)
         {
             var selectedItem = (string)ActionCombo.SelectedItem;
-            var xOrigin = e.X - Width / 2 + 8;
-            var yOrigin = Height / 2 - e.Y - 19;
+            var xOrigin = leftToCentralPosition(e.X);
+            int yOrigin = bottomToCentralPosition(e.Y);
 
             if (selectedItem.StartsWith("Draw "))
             {
@@ -34,14 +35,40 @@ namespace OOPDraw
             }
             else if (selectedItem == "Move Shape")
             {
-                ActiveShape().MoveTo(xOrigin, yOrigin);
+                ShapesMoveTo(xOrigin, yOrigin);
             }
             else if (selectedItem == "Resize Shape")
             {
-                ActiveShape().ResizeAbsolute(xOrigin, yOrigin);
+                ShapesResizeAbsolute(xOrigin, yOrigin);
             }
 
             DrawAll();
+        }
+
+        private void ShapesResizeAbsolute(int xOrigin, int yOrigin)
+        {
+            foreach (var shape in Shapes)
+            {
+                shape.ResizeAbsolute(xOrigin, yOrigin);
+            }
+        }
+
+        private void ShapesMoveTo(int xOrigin, int yOrigin)
+        {
+            foreach (var shape in Shapes)
+            {
+                shape.MoveTo(xOrigin, yOrigin);
+            }
+        }
+
+        private int bottomToCentralPosition(int verticlePosition)
+        {
+            return Height / 2 - verticlePosition - 19;
+        }
+
+        private int leftToCentralPosition(int horizontalPosition)
+        {
+            return horizontalPosition - Width / 2 + 8;
         }
 
         private Shape shapeToAdd(int xOrigin, int yOrigin, string selectedItem)
@@ -81,16 +108,13 @@ namespace OOPDraw
 
         private void AddShape(Shape shape)
         {
-            if (Shapes.Count > 0) ActiveShape().Unselect();
+            ShapesUnselectAll();
             Shapes.Add(shape);
-            activeShapeNumber = Shapes.Count - 1;
-            ActiveShape().Select();
         }
 
         public void DrawAll()
         {
             Turtle.Dispose();
-            UpdateGuiToMatchObjectSelected();
             foreach (var shape in Shapes)
             {
                 shape.Draw();
@@ -99,39 +123,22 @@ namespace OOPDraw
 
         private void UpdateGuiToMatchObjectSelected()
         {
-            NextShape.Enabled = Shapes.Count > 0;
-            PriorShape.Enabled = Shapes.Count > 0;
-            Delete.Enabled = Shapes.Count > 0;
-            if (Shapes.Count > 0)
+            var shapeSelectedIndex = 0;
+            var shapeSelectedCount = 0;
+            for (int i = 0; i < Shapes.Count; i++)
             {
-                ColourBtn.BackColor = ActiveShape().Colour;
-                OrientationSpin.Value = (decimal)ActiveShape().Orientation;
+                if (Shapes[i].IsSelected) 
+                {
+                    shapeSelectedCount += 1;
+                    shapeSelectedIndex = i;
+                }
             }
-        }
 
-        private int activeShapeNumber = 0;
-
-        private Shape ActiveShape()
-        {
-            return Shapes.Count > 0 ? Shapes[activeShapeNumber] : null;
-        }
-
-        private void NextShape_Click(object sender, System.EventArgs e)
-        {
-            ActiveShape().Unselect();
-            activeShapeNumber++;
-            if (activeShapeNumber >= Shapes.Count) activeShapeNumber = 0;
-            ActiveShape().Select();
-            DrawAll();
-        }
-
-        private void PreviousShape_Click(object sender, System.EventArgs e)
-        {
-            ActiveShape().Unselect();
-            activeShapeNumber--;
-            if (activeShapeNumber < 0) activeShapeNumber = Shapes.Count - 1;
-            ActiveShape().Select();
-            DrawAll();
+            if (shapeSelectedCount == 1) 
+            {
+                if (ColourBtn.BackColor != Shapes[shapeSelectedIndex].Colour) ColourBtn.BackColor = Shapes[shapeSelectedIndex].Colour;
+                if (OrientationSpin.Value != (decimal)Shapes[shapeSelectedIndex].Orientation) OrientationSpin.Value = (decimal)Shapes[shapeSelectedIndex].Orientation;
+            }
         }
 
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -160,37 +167,94 @@ namespace OOPDraw
             }
         }
 
-        private void colourBtn_Click(object sender, EventArgs e)
+        private void ColourBtn_Click(object sender, EventArgs e)
         {
             if (colorDialog1.ShowDialog() == DialogResult.OK)
             {
                 ColourBtn.BackColor = colorDialog1.Color;
-                if (Shapes.Count > 0)
+                foreach (var shape in Shapes)
                 {
-                    ActiveShape().Colourise(colorDialog1.Color);
-                    DrawAll();
+                    shape.Colourise(colorDialog1.Color);
                 }
+
+                DrawAll();
             }
         }
 
         private void OrientationSpin_ValueChanged(object sender, EventArgs e)
         {
-            if (Shapes.Count > 0) 
+            //Debug.WriteLine($"SpinValueChanged event fired");
+            foreach (var shape in Shapes)
             {
-                ActiveShape().Rotate((float)OrientationSpin.Value);
-                DrawAll();
+                shape.Rotate((float)OrientationSpin.Value);
             }
+
+            DrawAll();
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Are you sure that you wish to delete the Active Object", "Delete Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
+            DialogResult dialogResult = MessageBox.Show("Are you sure that you wish to delete the Active Object(s)", "Delete Question", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
             {
-                Shapes.Remove(ActiveShape());
-                if (activeShapeNumber > Shapes.Count - 1) activeShapeNumber = Shapes.Count - 1;
-                if (Shapes.Count > 0) ActiveShape().Select();
-                DrawAll();
+                for (int i = Shapes.Count - 1; i > -1; i--)
+                {
+                    if (Shapes[i].IsSelected) Shapes.Remove(Shapes[i]);
+                }
+            }
+        }
+
+        private void ShapesUnselectAll()
+        {
+            foreach (var shape in Shapes)
+            {
+                shape.Unselect();
+            }
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (MousePressed)
+            {
+                if (!MouseMoved)
+                {
+                    MouseMoved = true;
+                    MouseDragStart = new Point(e.X, e.Y);
+                }
+            }
+        }
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            MousePressed = true;
+            MouseMoved = false;
+            ShapesUnselectAll();
+            //Debug.WriteLine($"MouseDown event fired with mouse co-ords [{e.X}, {e.Y}]");
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            MousePressed = false;
+            MouseDragStop = new Point(e.X, e.Y);
+            //Debug.WriteLine($"MouseUp event fired [{MouseDragStart.X}, {MouseDragStart.Y}] [{MouseDragStop.X}, {MouseDragStop.Y}]");
+            SelectShapes(MouseDragStart.X, MouseDragStart.Y, MouseDragStop.X, MouseDragStop.Y);
+            if (!MouseMoved) DrawShape(e); else DrawAll();
+            UpdateGuiToMatchObjectSelected();
+        }
+
+        public void SelectShapes(int startX, int startY, int stopX, int stopY)
+        {
+            //Debug.WriteLine($"SelectShapes called with Params [{minX}, {minY}] [{maxX}, {maxY}]");
+            var nakovMinX = Math.Min(leftToCentralPosition(startX), leftToCentralPosition(stopX));
+            var nakovMaxX = Math.Max(leftToCentralPosition(startX), leftToCentralPosition(stopX));
+            var nakovMinY = Math.Min(bottomToCentralPosition(startY), bottomToCentralPosition(stopY));
+            var nakovMaxY = Math.Max(bottomToCentralPosition(startY), bottomToCentralPosition(stopY));
+            //Debug.WriteLine($"SelectShapes called with Nakov Params [{nakovMinX}, {nakovMinY}] [{nakovMaxX}, {nakovMaxY}]");
+            foreach (var shape in Shapes)
+            {
+                if (shape.XOrigin >= nakovMinX && shape.YOrigin >= nakovMinY && shape.XOrigin <= nakovMaxX && shape.YOrigin <= nakovMaxY)
+                    shape.Select();
+                //Debug.WriteLine($"Shape selected = {shape.Selected} as it has co-ords X = {shape.XOrigin}, Y = {shape.YOrigin}");
             }
         }
     }

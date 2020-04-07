@@ -32,5 +32,15 @@ namespace OOPDraw
             Width = xUnits;
             Height = yUnits;
         }
+
+        public override void Select()
+        {
+            base.IsSelected = true;
+        }
+
+        public override void Unselect()
+        {
+            base.IsSelected = false;
+        }
     }
 }

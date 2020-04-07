@@ -26,5 +26,15 @@ namespace OOPDraw
         {
             BaseLenth = xUnits / 10;
         }
+
+        public override void Select()
+        {
+            base.IsSelected = true;
+        }
+
+        public override void Unselect()
+        {
+            base.IsSelected = false;
+        }
     }
 }
